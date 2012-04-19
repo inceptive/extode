@@ -1,0 +1,37 @@
+{
+    "projectName": "Extanium",
+    "licenseText": "Copyright(c) 2011 Aron Homberg and the extode Community.\nhttp://extode.jsyn.de",
+    "deployDir"  : "../",
+    "pkgs": [
+        {
+            "name"    : "Extode",
+            "file"    : "Extode.js",
+            "isDebug" : true,
+            "fileIncludes": [
+                {"path": "../../Extify/library/extify/", "text": "Ext.js"},
+                {"path": "../../Extify/library/extify/util/",  "text": "Serializable.js"},
+                {"path": "../../Extify/library/extify/util/",  "text": "ClassObservable.js"},
+                {"path": "../../Extify/library/extify/",  "text": "Class.js"},
+                {"path": "../../Extify/library/extify/",  "text": "Function.js"},
+                {"path": "../../Extify/library/extify/",  "text": "String.js"},
+                {"path": "../../Extify/library/extify/",  "text": "Array.js"},
+                {"path": "../../Extify/library/extify/",  "text": "Template.js"},
+                {"path": "../../Extify/library/extify/util/",  "text": "TaskRunner.js"},
+                {"path": "../../Extify/library/extify/util/",  "text": "DelayedTask.js"},
+                {"path": "../../Extify/library/extify/",  "text": "Registry.js"},
+                {"path": "../library/extode/", "text": "Extode.js"},
+                {"path": "../library/extode/",  "text": "Template.js"},
+                {"path": "../library/extode/app/",  "text": "Helper.js"},
+                {"path": "../library/extode/",  "text": "Servlet.js"},
+                {"path": "../library/extode/app/",  "text": "Service.js"},
+                {"path": "../library/extode/service/",  "text": "Partial.js"},
+                {"path": "../library/extode/app/",  "text": "Servlet.js"},
+                {"path": "../library/extode/app/",  "text": "Model.js"},
+                {"path": "../library/extode/app/",  "text": "Config.js"},
+                {"path": "../library/extode/app/",  "text": "Application.js"}
+            ]
+        }
+    ],
+    "resources": [
+    ]
+}

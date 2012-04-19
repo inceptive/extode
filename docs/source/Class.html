@@ -1,0 +1,35 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.Class"></div>/**
+ * @class Ext.Class
+ * 
+ * Base class of all other classes specialized for instantiation
+ * and dynamic configuration.   
+ */
+Ext.define('Ext.Class', {
+
+    /**
+     * Gets called on instance creation.
+     * Maps the given config object onto the
+     * local object instance if given.          
+     *                    
+     * @param {Object} cfg Optional overlay config     
+     * @private
+     */         
+    constructor: function(/*{Object} cfg*/) {
+    
+       if (typeof arguments[0] != "undefined" &&
+           arguments[0] == "object") {
+           
+           // Apply config object onto local instance
+           Ext.apply(this, arguments[0]);    
+       }
+    }
+}); </pre>    
+</body>
+</html>

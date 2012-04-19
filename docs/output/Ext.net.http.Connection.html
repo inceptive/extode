@@ -1,0 +1,342 @@
+<div class="body-wrap" xmlns:ext="http://www.extjs.com"><div class="top-tools"><a class="inner-link" href="#Ext.net.http.Connection-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>&#13;<a class="inner-link" href="#Ext.net.http.Connection-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>&#13;<a class="inner-link" href="#Ext.net.http.Connection-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>&#13;<a class="bookmark" href="../docs/?class=Ext.net.http.Connection"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>&#13;</div><h1>Class <a href="source/Connection.html#cls-Ext.net.http.Connection">Ext.net.http.Connection</a></h1><table cellspacing="0"><tr><td class="label">Package:</td><td class="hd-info">Ext.net.http</td></tr><tr><td class="label">Defined In:</td><td class="hd-info"><a href="source/Connection.html#cls-Ext.net.http.Connection">Connection.js</a></td></tr><tr><td class="label">Class:</td><td class="hd-info"><a href="source/Connection.html#cls-Ext.net.http.Connection">Connection</a></td></tr><tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr></table><div class="description"><p>
+This data connection class implements a lazy configurable HTTP client/connection wrapper in style<br />
+of the Ext JS framework's Ext.data.Connection and Ext.Ajax.
+</p>
+<p>
+By calling new Ext.data.Connection().request(cfg) or the factory class Ext.Ajax.request(cfg) <br />
+you can specify all needed parameters. By assigning the success() or failure()<br />
+methods you get the results.
+</p> 
+<p>
+Possible configuration:
+</p>
+<p>
+<code><pre>
+<b>new</b> Ext.data.Connection().request({
+url: <em>''</em>,
+success: <b>function</b>(result) {},
+failure: <b>function</b>() {},
+headers: { <i>// Special HTTP request headers like X-*
+</i>
+X-Requested-With: <em>'Extanium'</em>
+},
+params: { <i>// HTTP POST parameters
+</i>
+user: <em>'foo'</em>,
+password: <em>'bar'</em>
+}, <i>// OR INSTEAD OF params!! data: <em>'ABC'</em> <b>for</b> plain data sending
+</i>
+timeout: 5, <i>// In seconds
+</i>
+method: <em>'POST'</em>, <i>// Which HTTP method to use?
+</i>
+json: true, <i>// Parse incomming text-result automatically and provide result.json object
+</i>
+async: true, 
+secure: false <i>// HTTPS cert checking
+</i>
+});
+</pre></code> 
+</p>
+<p>
+<b>The example above shows the default configuration.</b>
+</p>
+<p>
+<pre>
+success: function(result) {
+debug(result.data);
+debug(result.xml);
+debug(result.text);
+debug(result.json); // Only if json: true is defined (provides auto-deserialization)
+} 
+</pre>
+</p></div><div class="hr"></div><a id="Ext.net.http.Connection-props"></a><h2>Public Properties</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Property</th><th class="msource-header">Defined By</th></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-"></a><b><a href="source/io.html#prop-Ext.net.http.Connection-"></a></b> : Object<div class="mdesc">socket.io-node-client
+Copyright(c) 2011 LearnBoost <dev@learnboost.com>
+MIT Licensed</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-XHRPolling"></a><b><a href="source/xhr-polling.html#prop-Ext.net.http.Connection-XHRPolling">XHRPolling</a></b> : Object<div class="mdesc">The XHR-polling transport uses long polling XHR requests to create a
+"persistent" connection with the server.</div></td><td class="msource">Connection</td></tr><tr class="property-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-XMLHttpRequestCORS"></a><b><a href="source/xhr.html#prop-Ext.net.http.Connection-XMLHttpRequestCORS">XMLHttpRequestCORS</a></b> : Boolean<div class="mdesc"><div class="short">We preform a small feature detection to see if `Cross Origin Resource Sharing`&#13;
+is supported in the `XMLHttpRequest` ...</div><div class="long">We preform a small feature detection to see if `Cross Origin Resource Sharing`
+is supported in the `XMLHttpRequest` object, so we can use it for cross domain requests.</div></div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-empty"></a><b><a href="source/xhr-polling.html#prop-Ext.net.http.Connection-empty">empty</a></b> : Function<div class="mdesc">A small stub function that will be used to reduce memory leaks.</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-empty"></a><b><a href="source/xhr.html#prop-Ext.net.http.Connection-empty">empty</a></b> : Function<div class="mdesc">A small stub function that will be used to reduce memory leaks.</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-fire"></a><b><a href="source/socket.html#prop-Ext.net.http.Connection-fire">fire</a></b> : Object<div class="mdesc">API compatiblity</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-frame"></a><b><a href="source/transport.html#prop-Ext.net.http.Connection-frame">frame</a></b> : String<div class="mdesc">Message frame for encoding and decoding responses from the Socket.IO server.</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-function"></a><b><a href="source/socket.html#prop-Ext.net.http.Connection-function">function</a></b> : Object<div class="mdesc">socket.io-node-client
+Copyright(c) 2011 LearnBoost <dev@learnboost.com>
+MIT Licensed</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-function"></a><b><a href="source/xhr-polling.html#prop-Ext.net.http.Connection-function">function</a></b> : Object<div class="mdesc">socket.io-node-client
+Copyright(c) 2011 LearnBoost <dev@learnboost.com>
+MIT Licensed</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-function"></a><b><a href="source/xhr.html#prop-Ext.net.http.Connection-function">function</a></b> : Object<div class="mdesc">socket.io-node-client
+Copyright(c) 2011 LearnBoost <dev@learnboost.com>
+MIT Licensed</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-function"></a><b><a href="source/transport.html#prop-Ext.net.http.Connection-function">function</a></b> : Object<div class="mdesc">socket.io-node-client
+Copyright(c) 2011 LearnBoost <dev@learnboost.com>
+MIT Licensed</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-if"></a><b><a href="source/io.html#prop-Ext.net.http.Connection-if">if</a></b> : Object<div class="mdesc">Expose Socket.IO in jQuery</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-if"></a><b><a href="source/io.html#prop-Ext.net.http.Connection-if">if</a></b> : Object<div class="mdesc">Default path to the .swf file.</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-type"></a><b><a href="source/xhr-polling.html#prop-Ext.net.http.Connection-type">type</a></b> : string<div class="mdesc">The transport type, you use this to identify which transport was chosen.</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-var"></a><b><a href="source/io.html#prop-Ext.net.http.Connection-var">var</a></b> : Object<div class="mdesc"></div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-version"></a><b><a href="source/io.html#prop-Ext.net.http.Connection-version">version</a></b> : Object<div class="mdesc">Library version.</div></td><td class="msource">Connection</td></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-{Array}"></a><b><a href="source/xhr.html#prop-Ext.net.http.Connection-{Array}">{Array}</a></b> : Object<div class="mdesc">sendBuffer Used to queue up messages so they can be send as one request.</div></td><td class="msource">Connection</td></tr></tbody></table><a id="Ext.net.http.Connection-methods"></a><h2>Public Methods</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Method</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-Transport"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-Transport">Transport</a></b>(&nbsp;<code>Object&nbsp;base</code>,&nbsp;<code>Object&nbsp;options</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">This is the transport template for all supported transport methods. It provides the&#13;
+basic functionality to create a ...</div><div class="long">This is the transport template for all supported transport methods. It provides the
+basic functionality to create a working transport for Socket.IO.
+Options:
+- `timeout`  Transport shutdown timeout in milliseconds, based on the heartbeat interval.
+Example:
+var transport = io.Transport.mytransport = function(){
+io.Transport.apply(this, arguments);
+};
+io.util.inherit(transport, io.Transport);
+... // more code here
+// connect with your new transport
+var socket = new io.Socket(null,{transports:['mytransport']});<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>base</code> : Object<div class="sub-desc">The reference to io.Socket.</div></li><li><code>options</code> : Object<div class="sub-desc">The transport options.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-abort"></a><b><a href="source/Connection.html#method-Ext.net.http.Connection-abort">abort</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Aborts a request if sent</div><div class="long">Aborts a request if sent<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>void</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-check"></a><b><a href="source/xhr-polling.html#method-Ext.net.http.Connection-check">check</a></b>()
+    :
+                                        Boolean<div class="mdesc"><div class="short">Checks if browser supports this transport.</div><div class="long">Checks if browser supports this transport.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-check"></a><b><a href="source/xhr.html#method-Ext.net.http.Connection-check">check</a></b>(&nbsp;<code>Boolean&nbsp;xdomain</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Check if the XHR transports are supported</div><div class="long">Check if the XHR transports are supported<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>xdomain</code> : Boolean<div class="sub-desc">Check if we support cross domain requests.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-checkSend"></a><b><a href="source/xhr.html#method-Ext.net.http.Connection-checkSend">checkSend</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Check if we need to send data to the Socket.IO server, if we have data in our buffer&#13;
+we encode it and forward it to ...</div><div class="long">Check if we need to send data to the Socket.IO server, if we have data in our buffer
+we encode it and forward it to the sendIORequest method.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-connect"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-connect">connect</a></b>(&nbsp;<code>Function&nbsp;[fn]</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Establish a new connection with the Socket.IO server. This is done using the selected transport by the&#13;
+getTransport ...</div><div class="long">Establish a new connection with the Socket.IO server. This is done using the selected transport by the
+getTransport method. If the `connectTimeout` and the `tryTransportsOnConnectTimeout` options are set
+the client will keep trying to connect to the server using a different transports when the timeout occurs.
+Example:
+Create a Socket.IO client with a connect callback (We assume we have the WebSocket transport avaliable).
+var socket = new io.Socket();
+socket.connect(function(transport){
+console.log("Connected to server using the " + socket.transport.type + " transport.");
+});
+// => "Connected to server using the WebSocket transport."<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>[fn]</code> : Function<div class="sub-desc">Callback.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-connect"></a><b><a href="source/xhr-polling.html#method-Ext.net.http.Connection-connect">connect</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Establish a connection, for iPhone and Android this will be done once the page&#13;
+is loaded.</div><div class="long">Establish a connection, for iPhone and Android this will be done once the page
+is loaded.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-connect"></a><b><a href="source/xhr.html#method-Ext.net.http.Connection-connect">connect</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Establish a connection</div><div class="long">Establish a connection<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-connect"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-connect">connect</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Establish a connection with the Socket.IO server..</div><div class="long">Establish a connection with the Socket.IO server..<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-decode"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-decode">decode</a></b>(&nbsp;<code>(String&nbsp;data</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Decoded the response from the Socket.IO server, as the server could send multiple&#13;
+messages in one response.</div><div class="long">Decoded the response from the Socket.IO server, as the server could send multiple
+messages in one response.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>data</code> : (String<div class="sub-desc">The response from the server that requires decoding</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-disconnect"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-disconnect">disconnect</a></b>(&nbsp;<code>Boolean&nbsp;[soft]</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Disconnect the established connect.</div><div class="long">Disconnect the established connect.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>[soft]</code> : Boolean<div class="sub-desc">A soft disconnect will keep the reconnect settings enabled.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-disconnect"></a><b><a href="source/xhr.html#method-Ext.net.http.Connection-disconnect">disconnect</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Disconnect the established connection.</div><div class="long">Disconnect the established connection.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-disconnect"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-disconnect">disconnect</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Disconnect the established connection.</div><div class="long">Disconnect the established connection.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-doQueue"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-doQueue">doQueue</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">If there are queued messages we send all messages to the Socket.IO server and empty&#13;
+the queue.</div><div class="long">If there are queued messages we send all messages to the Socket.IO server and empty
+the queue.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-emit"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-emit">emit</a></b>(&nbsp;<code>String&nbsp;name</code>,&nbsp;<code>Array&nbsp;args</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Emit a event to all listeners.&#13;
+Example:&#13;
+var socket = new io.Socket();&#13;
+socket.on("custom:event", function(){&#13;
+conso...</div><div class="long">Emit a event to all listeners.
+Example:
+var socket = new io.Socket();
+socket.on("custom:event", function(){
+console.log("Emitted a custom:event");
+});
+socket.emit("custom:event");
+// => "Emitted a custom:event"<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>name</code> : String<div class="sub-desc">The name of the event.</div></li><li><code>args</code> : Array<div class="sub-desc">Arguments for the event.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-encode"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-encode">encode</a></b>(&nbsp;<code>String|Array&nbsp;messages</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Encode the message by adding the `frame` to each message. This allows&#13;
+the client so send multiple messages with only...</div><div class="long">Encode the message by adding the `frame` to each message. This allows
+the client so send multiple messages with only one request.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>messages</code> : String|Array<div class="sub-desc">Messages that need to be encoded.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-failure"></a><b><a href="source/Connection.html#method-Ext.net.http.Connection-failure">failure</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">This method will be called when a AJAX request fails.&lt;br /&gt;&#13;
+You may override this method by failure: function() {} c...</div><div class="long">This method will be called when a AJAX request fails.<br />
+You may override this method by failure: function() {} config.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>void</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-get"></a><b><a href="source/xhr-polling.html#method-Ext.net.http.Connection-get">get</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Starts a XHR request to wait for incoming messages.</div><div class="long">Starts a XHR request to wait for incoming messages.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-getTransport"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-getTransport">getTransport</a></b>(&nbsp;<code>Array&nbsp;[override]</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Find an available transport based on the options supplied in the constructor. For example if the&#13;
+`rememberTransport`...</div><div class="long">Find an available transport based on the options supplied in the constructor. For example if the
+`rememberTransport` option was set we will only connect with the previous successfully connected transport.
+The supplied transports can be overruled if the `override` argument is supplied.
+Example:
+Override the existing transports.
+var socket = new io.Socket();
+socket.getTransport(['jsonp-polling','websocket']);
+// returns the json-polling transport because it's availabe in all browsers.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>[override]</code> : Array<div class="sub-desc">A ordered list with transports that should be used instead of the options.transports.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-isXDomain"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-isXDomain">isXDomain</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Check if we need to use cross domain enabled transports. Cross domain would&#13;
+be a different port or different domain ...</div><div class="long">Check if we need to use cross domain enabled transports. Cross domain would
+be a different port or different domain name.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-on"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-on">on</a></b>(&nbsp;<code>String&nbsp;name</code>,&nbsp;<code>Function&nbsp;fn</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Adds a new eventListener for the given event.&#13;
+Example:&#13;
+var socket = new io.Socket();&#13;
+socket.on("connect", function...</div><div class="long">Adds a new eventListener for the given event.
+Example:
+var socket = new io.Socket();
+socket.on("connect", function(transport){
+console.log("Connected to server using the " + socket.transport.type + " transport.");
+});
+// => "Connected to server using the WebSocket transport."<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>name</code> : String<div class="sub-desc">The name of the event.</div></li><li><code>fn</code> : Function<div class="sub-desc">The function that is called once the event is emitted.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-onConnect"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-onConnect">onConnect</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">When the transport established an working connection the Socket.IO server it notifies us&#13;
+by calling this method so w...</div><div class="long">When the transport established an working connection the Socket.IO server it notifies us
+by calling this method so we can set the `connected` and `connecting` properties and emit
+the connection event.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-onConnect"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-onConnect">onConnect</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Notifies the base when a connection to the Socket.IO server has&#13;
+been established. And it starts the connection `time...</div><div class="long">Notifies the base when a connection to the Socket.IO server has
+been established. And it starts the connection `timeout` timer.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-onData"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-onData">onData</a></b>(&nbsp;<code>String&nbsp;data</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Handles the response from the server. When a new response is received&#13;
+it will automatically update the timeout, deco...</div><div class="long">Handles the response from the server. When a new response is received
+it will automatically update the timeout, decode the message and
+forwards the response to the onMessage function for further processing.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>data</code> : String<div class="sub-desc">Response from the server.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-onDisconnect"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-onDisconnect">onDisconnect</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">When the transport is disconnected from the Socket.IO server it notifies us by calling&#13;
+this method. If we where conn...</div><div class="long">When the transport is disconnected from the Socket.IO server it notifies us by calling
+this method. If we where connected and the `reconnect` is set we will attempt to reconnect.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-onDisconnect"></a><b><a href="source/xhr.html#method-Ext.net.http.Connection-onDisconnect">onDisconnect</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Handle the disconnect request.</div><div class="long">Handle the disconnect request.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-onDisconnect"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-onDisconnect">onDisconnect</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Notifies the base when the connection with the Socket.IO server&#13;
+has been disconnected.</div><div class="long">Notifies the base when the connection with the Socket.IO server
+has been disconnected.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-onHeartbeat"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-onHeartbeat">onHeartbeat</a></b>(&nbsp;<code>String&nbsp;heartbeat</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Send the received heartbeat message back to server. So the server&#13;
+knows we are still connected.</div><div class="long">Send the received heartbeat message back to server. So the server
+knows we are still connected.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>heartbeat</code> : String<div class="sub-desc">Heartbeat response from the server.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-onMessage"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-onMessage">onMessage</a></b>(&nbsp;<code>data&nbsp;The</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">When the transport receives new messages from the Socket.IO server it notifies us by calling&#13;
+this method with the de...</div><div class="long">When the transport receives new messages from the Socket.IO server it notifies us by calling
+this method with the decoded `data` it received.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>The</code> : data<div class="sub-desc">message from the Socket.IO server.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-onMessage"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-onMessage">onMessage</a></b>(&nbsp;<code>String&nbsp;message</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">After the response from the server has been parsed to individual&#13;
+messages we need to decode them using the the Socke...</div><div class="long">After the response from the server has been parsed to individual
+messages we need to decode them using the the Socket.IO message
+protocol: <https://github.com/learnboost/socket.io-node/>.
+When a message is received we check if a session id has been set,
+if the session id is missing we can assume that the received message
+contains the sessionid of the connection.
+When a message is prefixed with `~h~` we dispatch it our heartbeat
+processing method `onHeartbeat` with the content of the heartbeat.
+When the message is prefixed with `~j~` we can assume that the contents
+of the message is JSON encoded, so we parse the message and notify
+the base of the new message.
+If none of the above, we consider it just a plain text message and
+notify the base of the new message.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>message</code> : String<div class="sub-desc">A decoded message from the server.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-onReconnect"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-onReconnect">onReconnect</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">The reconnection is done using an exponential back off algorithm to prevent&#13;
+the server from being flooded with conne...</div><div class="long">The reconnection is done using an exponential back off algorithm to prevent
+the server from being flooded with connection requests. When the transport
+is disconnected we wait until the `reconnectionDelay` finishes. We multiply
+the `reconnectionDelay` (if the previous `reconnectionDelay` was 500 it will
+be updated to 1000 and than 2000>4000>8000>16000 etc.) and tell the current
+transport to connect again. When we run out of `reconnectionAttempts` we will
+do one final attempt and loop over all enabled transport methods to see if
+other transports might work. If everything fails we emit the `reconnect_failed`
+event.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-onTimeout"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-onTimeout">onTimeout</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Disconnect from the Socket.IO server when a timeout occurs.</div><div class="long">Disconnect from the Socket.IO server when a timeout occurs.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-once"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-once">once</a></b>(&nbsp;<code>String&nbsp;name</code>,&nbsp;<code>Function&nbsp;fn</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Adds a one time listener, the listener will be removed after the event is emitted.&#13;
+Example:&#13;
+var socket = new io.Soc...</div><div class="long">Adds a one time listener, the listener will be removed after the event is emitted.
+Example:
+var socket = new io.Socket();
+socket.once("custom:event", function(){
+console.log("I should only log once.");
+});
+socket.emit("custom:event");
+socket.emit("custom:event");
+// => "I should only log once."<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>name</code> : String<div class="sub-desc">The name of the event.</div></li><li><code>fn</code> : Function<div class="sub-desc">The function that is called once the event is emitted.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-prepareUrl"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-prepareUrl">prepareUrl</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Generates a connection url based on the Socket.IO URL Protocol.&#13;
+See  for more details.</div><div class="long">Generates a connection url based on the Socket.IO URL Protocol.
+See <https://github.com/learnboost/socket.io-node/> for more details.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-queue"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-queue">queue</a></b>(&nbsp;<code>Mixed&nbsp;message</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Queues messages when there isn't a active connection available. Once a connection has been&#13;
+established you should ca...</div><div class="long">Queues messages when there isn't a active connection available. Once a connection has been
+established you should call the `doQueue` method to send the queued messages to the server.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>message</code> : Mixed<div class="sub-desc">The message that was originally send to the `send` method.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-removeEvent"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-removeEvent">removeEvent</a></b>(&nbsp;<code>String&nbsp;name</code>,&nbsp;<code>Function&nbsp;fn</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Removes a event listener from the listener array for the specified event.&#13;
+Example:&#13;
+var socket = new io.Socket()&#13;
+, ...</div><div class="long">Removes a event listener from the listener array for the specified event.
+Example:
+var socket = new io.Socket()
+, event = function(){};
+socket.on("connect", event);
+socket.removeEvent("connect", event);<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>name</code> : String<div class="sub-desc">The name of the event.</div></li><li><code>fn</code> : Function<div class="sub-desc">The function that is called once the event is emitted.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-request"></a><b><a href="source/Connection.html#method-Ext.net.http.Connection-request">request</a></b>(&nbsp;<code>Object&nbsp;cfg</code>&nbsp;)
+    :
+                                        Ti.Network.HttpClient|Boolean<div class="mdesc"><div class="short">&#13;
+Configures and starts a HTTP AJAX-request&#13;
+&#13;
+&#13;
+A request configuration object may contain:&#13;
+</div><div class="long"><p>
+Configures and starts a HTTP AJAX-request
+</p>
+<p>
+A request configuration object may contain:
+</p><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>cfg</code> : Object<div class="sub-desc">Configuration of a request</div></li></ul><strong>Returns:</strong><ul><li><code>Ti.Network.HttpClient|Boolean</code><div class="sub-desc">HTTP client instance or false</div></li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-request"></a><b><a href="source/xhr.html#method-Ext.net.http.Connection-request">request</a></b>(&nbsp;<code>Boolean&nbsp;[xdomain]</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Generates the correct `XMLHttpRequest` for regular and cross domain requests.</div><div class="long">Generates the correct `XMLHttpRequest` for regular and cross domain requests.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>[xdomain]</code> : Boolean<div class="sub-desc">Create a request that can be used cross domain.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-request"></a><b><a href="source/xhr.html#method-Ext.net.http.Connection-request">request</a></b>(&nbsp;<code>String&nbsp;url</code>,&nbsp;<code>String&nbsp;method</code>,&nbsp;<code>Boolean&nbsp;multipart</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Generates a configured XHR request</div><div class="long">Generates a configured XHR request<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>url</code> : String<div class="sub-desc">The url that needs to be requested.</div></li><li><code>method</code> : String<div class="sub-desc">The method the request should use.</div></li><li><code>multipart</code> : Boolean<div class="sub-desc">Do a multipart XHR request</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-send"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-send">send</a></b>(&nbsp;<code>Mixed&nbsp;data</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Sends the data to the Socket.IO server. If there isn't a connection to the server&#13;
+the data will be forwarded to the ...</div><div class="long">Sends the data to the Socket.IO server. If there isn't a connection to the server
+the data will be forwarded to the queue.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>data</code> : Mixed<div class="sub-desc">The data that needs to be send to the Socket.IO server.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-send"></a><b><a href="source/xhr.html#method-Ext.net.http.Connection-send">send</a></b>(&nbsp;<code>data&nbsp;The</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Send data to the Socket.IO server.</div><div class="long">Send data to the Socket.IO server.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>The</code> : data<div class="sub-desc">message</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-send"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-send">send</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Send the message to the connected Socket.IO server.</div><div class="long">Send the message to the connected Socket.IO server.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-sendIORequest"></a><b><a href="source/xhr.html#method-Ext.net.http.Connection-sendIORequest">sendIORequest</a></b>(&nbsp;<code>String&nbsp;data</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Posts a encoded message to the Socket.IO server.</div><div class="long">Posts a encoded message to the Socket.IO server.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>data</code> : String<div class="sub-desc">A encoded message.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-setPath"></a><b><a href="source/io.html#method-Ext.net.http.Connection-setPath">setPath</a></b>(&nbsp;<code>String&nbsp;path</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">&lt;static&gt;&nbsp;Updates the location of the WebSocketMain.swf file that is required for the Flashsocket transport.&#13;
+This should only ...</div><div class="long">&lt;static&gt;&nbsp;Updates the location of the WebSocketMain.swf file that is required for the Flashsocket transport.
+This should only be needed if you want to load in the WebSocketMainInsecure.swf or if you want to
+host the .swf file on a other server.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>path</code> : String<div class="sub-desc">The path of the .swf file</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-setTimeout"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-setTimeout">setTimeout</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">All the transports have a dedicated timeout to detect if&#13;
+the connection is still alive. We clear the existing timer&#13;...</div><div class="long">All the transports have a dedicated timeout to detect if
+the connection is still alive. We clear the existing timer
+and set new one each time this function is called. When the
+timeout does occur it will call the `onTimeout` method.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-stringify"></a><b><a href="source/transport.html#method-Ext.net.http.Connection-stringify">stringify</a></b>(&nbsp;<code>String|Array|Object&nbsp;message</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Transforms the message to a string. If the message is an {Object} we will convert it to&#13;
+a string and prefix it with ...</div><div class="long">Transforms the message to a string. If the message is an {Object} we will convert it to
+a string and prefix it with the `~j~` flag to indicate that message is JSON encoded.
+Example:
+stringify({foo:"bar"});
+// => "~j~{"foo":"bar"}"<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>message</code> : String|Array|Object<div class="sub-desc">The messages that needs to be transformed to a string.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-var"></a><b><a href="source/socket.html#method-Ext.net.http.Connection-var">var</a></b>(&nbsp;<code>String&nbsp;[host]</code>,&nbsp;<code>Objects&nbsp;[options]</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Create a new `Socket.IO client` which can establish a persisted&#13;
+connection with a Socket.IO enabled server.&#13;
+Options...</div><div class="long">Create a new `Socket.IO client` which can establish a persisted
+connection with a Socket.IO enabled server.
+Options:
+- `secure`  Use secure connections, defaulting to false.
+- `document`  Reference to the document object to retrieve and set cookies, defaulting to document.
+- `port`  The port where the Socket.IO server listening on, defaulting to location.port.
+- `resource`  The path or namespace on the server where the Socket.IO requests are intercepted, defaulting to 'socket.io'.
+- `transports`  A ordered list with the available transports, defaulting to all transports.
+- `transportOption`  A {Object} containing the options for each transport. The key of the object should reflect
+name of the transport and the value a {Object} with the options.
+- `connectTimeout`  The duration in milliseconds that a transport has to establish a working connection, defaulting to 5000.
+- `tryTransportsOnConnectTimeout`  Should we attempt other transport methods when the connectTimeout occurs, defaulting to true.
+- `reconnect`  Should reconnection happen automatically, defaulting to true.
+- `reconnectionDelay`  The delay in milliseconds before we attempt to establish a working connection. This value will
+increase automatically using a exponential back off algorithm. Defaulting to 500.
+- `maxReconnectionAttempts`  Number of attempts we should make before seizing the reconnect operation, defaulting to 10.
+- `rememberTransport` Should the successfully connected transport be remembered in a cookie, defaulting to true.
+Examples:
+Create client with the default settings.
+var socket = new io.Socket();
+socket.connect();
+socket.on('message', function(msg){
+console.log('Received message: ' + msg );
+});
+socket.on('connect', function(){
+socket.send('Hello from client');
+});
+Create a connection with server on a different port and host.
+var socket = new io.Socket('http://example.com',{port:1337});<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>[host]</code> : String<div class="sub-desc">The host where the Socket.IO server is located, it defaults to the host that runs the page.</div></li><li><code>[options]</code> : Objects<div class="sub-desc">The options that will configure the Socket.IO client.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-xdomainCheck"></a><b><a href="source/xhr-polling.html#method-Ext.net.http.Connection-xdomainCheck">xdomainCheck</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Check if cross domain requests are supported</div><div class="long">Check if cross domain requests are supported<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.net.http.Connection-xdomainCheck"></a><b><a href="source/xhr.html#method-Ext.net.http.Connection-xdomainCheck">xdomainCheck</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Check if the XHR transport supports corss domain requests.</div><div class="long">Check if the XHR transport supports corss domain requests.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Connection</td></tr></tbody></table><a id="Ext.net.http.Connection-events"></a><h2>Public Events</h2><div class="no-members">This class has no public events.</div></div>

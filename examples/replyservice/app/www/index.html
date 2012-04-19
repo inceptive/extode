@@ -1,0 +1,25 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    
+    <title>ReplyMessage</title>
+    
+    <link rel="stylesheet" type="text/css" href="/assets/replymessage.css" />
+    
+    <script type="text/javascript" src="http://localhost:9998/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="App.js"></script>
+</head>
+<body onload="initApp()">
+
+    <h2>Reply Message Service</h2>
+    <input type="button" onclick="sendAndReceiveMessage()" value="Send a message!"></input>
+    
+    <h3>We may test Extode with higher traffic...</h3>
+    <input type="button" onclick="performanceTest()" value="Send a lot of messages! (500; without timeout)"></input>
+    
+    <br /><br />
+    <div id="responseWindow" style="width:500px;height:400px;overflow:auto">
+        
+    </div>
+</body>
+</html>

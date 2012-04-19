@@ -1,0 +1,161 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.LocalStorage"></div>/**
+ * @class Ext.LocalStorage
+ * @singleton
+ *
+ * This class handles Titanium persistent properties in an easier way.
+ * The values stored via the registry ARE SESSION PERSISTENT.
+ * 
+ * Type-safe implementation of the HTML 5 LocalStorage API.  
+ */
+Ext.define("Ext.LocalStorage", {
+
+
+    singleton: true,
+    
+
+    <div id="method-Ext.LocalStorage-getString"></div>/**
+     * Returns a property value as String
+     *
+     * @param {String} name Name of the propery
+     * @return {String} Property value
+     */
+    getString: function(name) {
+        return Titanium.App.Properties.getString(name);
+    },
+    
+    
+    <div id="method-Ext.LocalStorage-getBool"></div>/**
+     * Returns a property value as Boolean
+     *
+     * @param {String} name Name of the propery
+     * @return {Boolean} Property value
+     */
+    getBool: function(name, value) {
+        return Titanium.App.Properties.getBool(name);
+    },
+    
+    
+    <div id="method-Ext.LocalStorage-getArray"></div>/**
+     * Returns a property value as Array
+     *
+     * @param {String} name Name of the propery
+     * @return {Array} Property value
+     */
+    getArray: function(name, value) {
+        return Titanium.App.Properties.getList(name);
+    },
+    
+    
+    <div id="method-Ext.LocalStorage-getNumber"></div>/**
+     * Returns a property value as Number
+     *
+     * @param {String} name Name of the propery
+     * @return {Number} Property value
+     */
+    getNumber: function(name, value) {
+        return Titanium.App.Properties.getDouble(name);
+    },
+    
+    
+    <div id="method-Ext.LocalStorage-getObject"></div>/**
+     * Returns a property value as Object
+     *
+     * @param {String} name Name of the propery
+     * @return {Object} Property value
+     */
+    getObject: function(name) {
+        return JSON.parse(Ext.LocalStorage.getString(name));
+    },
+    
+    
+    <div id="method-Ext.LocalStorage-setBool"></div>/**
+     * Sets a Boolean value by name
+     *
+     * @param {String} name Name of the propery
+     * @param {Boolean} value Value of the propery
+     * @return {void}
+     */
+    setBool: function(name, value) {
+        return Titanium.App.Properties.setBool(name, value);
+    },
+    
+    
+    <div id="method-Ext.LocalStorage-setString"></div>/**
+     * Sets a String value by name
+     *
+     * @param {String} name Name of the propery
+     * @param {String} value Value of the propery
+     * @return {void}
+     */
+    setString: function(name, value) {
+        return Titanium.App.Properties.setString(name, value);
+    },
+    
+    
+    <div id="method-Ext.LocalStorage-setNumber"></div>/**
+     * Sets a Number value by name
+     *
+     * @param {String} name Name of the propery
+     * @param {Number} value Value of the propery
+     * @return {void}
+     */
+    setNumber: function(name, value) {
+        return Titanium.App.Properties.setDouble(name, value);
+    },
+    
+    
+    <div id="method-Ext.LocalStorage-setArray"></div>/**
+     * Sets an Array value by name
+     *
+     * @param {String} name Name of the propery
+     * @param {Array} value Value of the propery
+     * @return {void}
+     */
+    setArray: function(name, value) {
+        return Titanium.App.Properties.setList(name, value);
+    },
+    
+    
+    <div id="method-Ext.LocalStorage-setObject"></div>/**
+     * Sets an Object value by name
+     *
+     * @param {String} name Name of the propery
+     * @param {Object} value Value of the propery
+     * @return {void}
+     */
+    setObject: function(name, obj) {
+        return Ext.LocalStorage.setString(name, JSON.stringify(obj));
+    },
+    
+    
+    <div id="method-Ext.LocalStorage-has"></div>/**
+     * Checks if a property is set by name
+     *
+     * @param {String} name Name of the propery
+     * @return {Boolean} True, if set, false if not
+     */
+    has: function(name) {
+        return Titanium.App.Properties.hasProperty(name);
+    }
+});
+
+global.localStorage = {};
+global.localStorage.setString = Ext.LocalStorage.setString;
+global.localStorage.getString = Ext.LocalStorage.getString;
+global.localStorage.setBool = Ext.LocalStorage.setBool;
+global.localStorage.getBool = Ext.LocalStorage.getBool;
+global.localStorage.setArray = Ext.LocalStorage.setArray;
+global.localStorage.getArray = Ext.LocalStorage.getArray;
+global.localStorage.setNumber = Ext.LocalStorage.setNumber;
+global.localStorage.getNumber = Ext.LocalStorage.getNumber;
+global.localStorage.setObject = Ext.LocalStorage.setObject;
+global.localStorage.getObject = Ext.LocalStorage.getObject;</pre>    
+</body>
+</html>

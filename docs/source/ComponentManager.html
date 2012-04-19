@@ -1,0 +1,123 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.ComponentManager"></div>/**
+ * @class Ext.ComponentManager
+ * @singleton 
+ * 
+ * Component manager class to create instances of 
+ * Ext.Component by xtype alias names and manage them.
+ */
+Ext.define('Ext.ComponentManager', {
+
+    singleton: true,
+    
+    /**
+     * Internal sequence to generate unique id's if
+     * no id is provided when registering a component         
+     * @private
+     */         
+    idSequence: 0,
+    
+    
+    /**
+     * Internal map of known (registered) components
+     * identified by id         
+     * @private
+     */         
+    knownCmps: {},
+    
+    
+    /**
+     * Map of xtype names -> type constructor ref's
+     * @private     
+     */         
+    knownXtypes: {},
+    
+    
+    <div id="method-Ext.ComponentManager-create"></div>/**
+     * Creates an instance of a Ext.Component by given xtype
+     * alias. Returns null if no type were found.
+     * 
+     * @param {String} xtype Component alias name
+     * @param {Object} cfg Object configuration of the component
+     * @throws Exception when xtype is not known     
+     * @return {Ext.Component|null} Instance of Ext.Component                          
+     */         
+    create: function(xtype, cfg) {
+    
+        var cmpInst = null;
+    
+        // Check datatype of registered entry
+        if (Ext.isDefined(Ext.ComponentManager.knownXtypes[xtype]) &&
+            Ext.isFunction(Ext.ComponentManager.knownXtypes[xtype])) {
+        
+            cmpInst = new Ext.ComponentManager.knownXtypes[xtype](cfg);
+            return cmpInst;
+             
+        } else {
+            throw "xtype " + xtype + " is not known. " +
+                  "Ext.ComponentManager.create() cannot create an instance of it." + 
+                  "Please ensure you've registered that xtype using Ext.reg()!";
+        }
+    },
+    
+            
+    <div id="method-Ext.ComponentManager-registerInstance"></div>/**
+     * Registers an instance by id
+     * 
+     * @param {String} id Id which identifies the instance
+     * @param {Ext.Component} instance The instance to register
+     * @return {Ext.Component}                  
+     */         
+    registerInstance: function(id, instance) {
+    
+        if (typeof id == "undefined" || id == null) {
+            
+            // Auto-generate id
+            Ext.ComponentManager.idSequence++;
+            id = "ext-" + id;
+        }
+        Ext.ComponentManager.knownCmps[id] = instance;
+        
+        return instance;
+    },
+    
+    
+    <div id="method-Ext.ComponentManager-fetchInstance"></div>/**
+     * Fetches an instance by id.
+     * Returns undefined if there is no instance registered for the given id.     
+     *                
+     * @param {String} id Id which identifies the instance
+     * @return {Ext.Component|undefined}         
+     */         
+    fetchInstance: function(id) {
+        return Ext.ComponentManager.knownCmps[id];
+    },
+    
+    
+    <div id="method-Ext.ComponentManager-registerXtype"></div>/**
+     * Registers a datatype which extends Ext.Component
+     * by xtype name.
+     * 
+     * @param {String} xtypeName Name of the component type
+     * @param {Function} cmpTypeRef Reference to the constructor function
+     * @return {Function} Constructor reference                         
+     */         
+    registerXtype: function(xtypeName, cmpTypeRef) {
+    
+        Ext.ComponentManager.knownXtypes[xtypeName] = cmpTypeRef;
+        return cmpTypeRef;    
+    }
+}); 
+
+global.getCmp = Ext.ComponentManager.fetchInstance;
+Ext.getCmp = Ext.ComponentManager.fetchInstance;
+Ext.createCmp = Ext.ComponentManager.create;
+Ext.reg = Ext.ComponentManager.registerXtype;</pre>    
+</body>
+</html>

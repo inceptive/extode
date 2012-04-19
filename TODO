@@ -1,0 +1,18 @@
+TODO
+====
+
+
+High Prio:
+- implement configurable MongoDB/Session/Express support
+- Socket auth / Connect|Express session integration
+
+Prio:
+- implement JsonRpcServlet (JSON schema)
+- Support multinode and culstering in configuration
+- implement ExtDirectService
+
+Nice to have:
+- Use color module for console output
+- TDD/BDD by sebs tool
+- allow expose models as Ext JS frontend models by a DefaultModelExposeServlet
+  (reuse server-side model definitions on client side JS)

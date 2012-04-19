@@ -1,0 +1,75 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-String"></div>/**
+ * @class String
+ * These functions are available on every String object.
+ */
+Ext.applyIf(String, {
+
+
+    <div id="method-String-format"></div>/**
+     * Allows you to define a tokenized string and pass an arbitrary number of arguments to replace the tokens.  Each
+     * token must be unique, and must increment in the format {0}, {1}, etc.  Example usage:
+     * <pre><code>
+var cls = 'my-class', text = 'Some text';
+var s = String.format('&lt;div class="{0}">{1}&lt;/div>', cls, text);
+// s now contains the string: '&lt;div class="my-class">Some text&lt;/div>'
+     * </code></pre>
+     * @param {String} string The tokenized string to be formatted
+     * @param {String} value1 The value to replace token {0}
+     * @param {String} value2 Etc...
+     * @return {String} The formatted string
+     * @static
+     */
+    format : function(format){
+        var args = Ext.toArray(arguments, 1);
+        return format.replace(/\{(\d+)\}/g, function(m, i){
+            return args[i];
+        });
+    }
+});
+
+
+
+<div id="cls-Ext.String"></div>/**
+ * @class Ext.String
+ * @singleton
+ * Singleton class as helper working with string.   
+ */ 
+Ext.define("Ext.String", {
+
+    singleton: true,
+    
+    
+    <div id="method-Ext.String-format"></div>/**
+     *
+     * UNTESTED 
+     *              
+     * Allows you to define a tokenized string and pass an arbitrary number of arguments to replace the tokens.  Each
+     * token must be unique, and must increment in the format {0}, {1}, etc.  Example usage:
+     * <pre><code>
+var cls = 'my-class', text = 'Some text';
+var s = String.format('&lt;div class="{0}">{1}&lt;/div>', cls, text);
+// s now contains the string: '&lt;div class="my-class">Some text&lt;/div>'
+     * </code></pre>
+     * @param {String} input Input string     
+     * @param {String} string The tokenized string to be formatted
+     * @param {String} value1 The value to replace token {0}
+     * @param {String} value2 Etc...
+     * @return {String} The formatted string
+     * @static
+     */
+    format : function(format){
+        var args = Ext.toArray(arguments, 1);
+        return format.replace(/\{(\d+)\}/g, function(m, i){
+            return args[i];
+        });
+    }
+});</pre>    
+</body>
+</html>

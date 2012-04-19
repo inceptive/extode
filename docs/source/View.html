@@ -1,0 +1,90 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.View"></div>/**
+ * @class Ext.View
+ *  
+ * Represents a view.   
+ * 
+ *
+ * To be used via: Ext.view({
+ *     // Configuration goes here
+ * })  
+ *    
+ * Each instance registers by it's name attribute and is
+ * fetchable by:
+ * 
+ * var view = Ext.getView('nameOfTheView');  
+ */ 
+Ext.define('Ext.View', {
+                            
+    mixins: ['Ext.util.Observable'],
+    extend: 'Ext.Component',
+
+    statics: {
+    
+        <div id="method-Ext.View-create"></div>/**
+         * Defines an view. 
+         * 
+         * @param {Object} cfg View configuration
+         * @return void     
+         */         
+        create: function(cfg) {
+        
+            if (typeof global.Views == "undefined") {
+                global.Views = {};
+            };
+            global.Views[cfg.name] = new Ext.View(cfg);
+        },
+        
+        
+        <div id="method-Ext.View-get"></div>/**
+         * Returns the view instance for a name
+         * 
+         * @param {String} name Name of the view                  
+         * @return {Ext.View}         
+         */                 
+        get: function(name) {
+            return global.Views[name];
+        }
+    },
+
+
+    <div id="cfg-Ext.View-Name"></div>/**
+     * @cfg {String} Name of the view
+     */         
+    name: '',
+    
+    
+    <div id="method-Ext.View-constructor"></div>/**
+     * Constructor for the view class
+     *
+     * @param {Object} cfg Config overlay
+     * @return void          
+     */         
+    constructor: function(cfg) {
+    
+        // Call Component constructor for dynamic overlaying
+        Ext.View.superclass.constructor.apply(this, arguments);
+        
+        // Call the init() method
+        this.init();
+    },
+    
+    
+    <div id="method-Ext.View-init"></div>/**
+     * Get's automatically called on instance creation.
+     * @return void     
+     */         
+    init: function() {}
+});
+
+// Shortcut
+Ext.view = Ext.View.create;
+Ext.getView = Ext.View.get;</pre>    
+</body>
+</html>

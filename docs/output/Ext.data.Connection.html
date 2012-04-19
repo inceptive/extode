@@ -1,0 +1,71 @@
+<div class="body-wrap" xmlns:ext="http://www.extjs.com"><div class="top-tools"><a class="inner-link" href="#Ext.data.Connection-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>&#13;<a class="inner-link" href="#Ext.data.Connection-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>&#13;<a class="inner-link" href="#Ext.data.Connection-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>&#13;<a class="bookmark" href="../docs/?class=Ext.data.Connection"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>&#13;</div><h1>Class <a href="source/Connection.html#cls-Ext.data.Connection">Ext.data.Connection</a></h1><table cellspacing="0"><tr><td class="label">Package:</td><td class="hd-info">Ext.data</td></tr><tr><td class="label">Defined In:</td><td class="hd-info"><a href="source/Connection.html#cls-Ext.data.Connection">Connection.js</a></td></tr><tr><td class="label">Class:</td><td class="hd-info"><a href="source/Connection.html#cls-Ext.data.Connection">Connection</a></td></tr><tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr></table><div class="description"><p>
+This data connection class implements a lazy configurable HTTP client/connection wrapper in style<br />
+of the Ext JS framework's Ext.data.Connection and Ext.Ajax.
+</p>
+<p>
+By calling new Ext.data.Connection().request(cfg) or the factory class Ext.Ajax.request(cfg) <br />
+you can specify all needed parameters. By assigning the success() or failure()<br />
+methods you get the results.
+</p> 
+<p>
+Possible configuration:
+</p>
+<p>
+<code><pre>
+<b>new</b> Ext.data.Connection().request({
+url: <em>''</em>,
+success: <b>function</b>(result) {},
+failure: <b>function</b>() {},
+headers: { <i>// Special HTTP request headers like X-*
+</i>
+X-Requested-With: <em>'Extanium'</em>
+},
+params: { <i>// HTTP POST parameters
+</i>
+user: <em>'foo'</em>,
+password: <em>'bar'</em>
+}, <i>// OR INSTEAD OF params!! data: <em>'ABC'</em> <b>for</b> plain data sending
+</i>
+timeout: 5, <i>// In seconds
+</i>
+method: <em>'POST'</em>, <i>// Which HTTP method to use?
+</i>
+json: true, <i>// Parse incomming text-result automatically and provide result.json object
+</i>
+async: true, 
+secure: false <i>// HTTPS cert checking
+</i>
+});
+</pre></code> 
+</p>
+<p>
+<b>The example above shows the default configuration.</b>
+</p>
+<p>
+<pre>
+success: function(result) {
+debug(result.data);
+debug(result.xml);
+debug(result.text);
+debug(result.json); // Only if json: true is defined (provides auto-deserialization)
+} 
+</pre>
+</p></div><div class="hr"></div><a id="Ext.data.Connection-props"></a><h2>Public Properties</h2><div class="no-members">This class has no public properties.</div><a id="Ext.data.Connection-methods"></a><h2>Public Methods</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Method</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.data.Connection-abort"></a><b><a href="source/Connection.html#method-Ext.data.Connection-abort">abort</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Aborts a request if sent</div><div class="long">Aborts a request if sent<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>void</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.data.Connection-failure"></a><b><a href="source/Connection.html#method-Ext.data.Connection-failure">failure</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">This method will be called when a AJAX request fails.&lt;br /&gt;&#13;
+You may override this method by failure: function() {} c...</div><div class="long">This method will be called when a AJAX request fails.<br />
+You may override this method by failure: function() {} config.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>void</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Connection</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.data.Connection-request"></a><b><a href="source/Connection.html#method-Ext.data.Connection-request">request</a></b>(&nbsp;<code>Object&nbsp;cfg</code>&nbsp;)
+    :
+                                        Ti.Network.HttpClient|Boolean<div class="mdesc"><div class="short">&#13;
+Configures and starts a HTTP AJAX-request&#13;
+&#13;
+&#13;
+A request configuration object may contain:&#13;
+</div><div class="long"><p>
+Configures and starts a HTTP AJAX-request
+</p>
+<p>
+A request configuration object may contain:
+</p><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>cfg</code> : Object<div class="sub-desc">Configuration of a request</div></li></ul><strong>Returns:</strong><ul><li><code>Ti.Network.HttpClient|Boolean</code><div class="sub-desc">HTTP client instance or false</div></li></ul></div></div></div></td><td class="msource">Connection</td></tr></tbody></table><a id="Ext.data.Connection-events"></a><h2>Public Events</h2><div class="no-members">This class has no public events.</div></div>

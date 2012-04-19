@@ -1,0 +1,108 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.Servlet"></div>/**
+ * @class Ext.Servlet
+ * 
+ * Class that provides standard dispatcher methods
+ * for HTTP operations. 
+ */
+Ext.define('Ext.Servlet', {
+
+    singleton: true,
+    
+    
+    <div id="prop-Ext.Servlet-indexFile"></div>/**
+     * @var {String} indexFile Name of the index file
+     */
+    indexFile: "index.html",
+    
+    
+    <div id="method-Ext.Servlet-dispatchStaticFiles"></div>/**
+     * Method to dispatch static file requests
+     * @param {Object} req Request object
+     * @param {object} res Response object
+     * @return void
+     */
+    dispatchStaticFiles: function(req, res) {
+    
+        var me = this, fs = require("fs"),
+            rootDir = global.App.appFolder + "/" + global.App.webFolder, 
+            reqPath = req.params[0], 
+            targetFile = "";
+        
+        // If no path given, use index file
+        if (reqPath.length === 0) {
+            reqPath = Ext.Servlet.indexFile;
+        }
+        
+        // Determine target file
+        targetFile = Ext.appDirPath + "/" + rootDir + "/" + reqPath;
+        
+        // Dispatch file dispatching
+        fs.stat(targetFile, function(err, stats) {
+        
+            if (err) {
+                if (err.code === 'ENOENT') {
+                    Ext.Servlet.on404(req, res);
+                } else {
+                    Ext.Servlet.on500(req, res);
+                }
+            } else {
+                Ext.Servlet.deliverFile(req, res, targetFile, fs);
+            }
+        });
+        
+        delete rootDir, reqPath, targetFile;
+    },
+    
+    
+    <div id="method-Ext.Servlet-on404"></div>/**
+     * Impl whats todo on error 404 (not found)
+     * @param {Object} req Request object
+     * @param {object} res Response object
+     * @return void
+     */
+    on404: function(req, res) {
+        res.send(404);
+    },
+    
+    
+    <div id="method-Ext.Servlet-on500"></div>/**
+     * Impl whats todo on error 500 (internal server error)
+     * @param {Object} req Request object
+     * @param {object} res Response object
+     * @return void
+     */
+    on500: function(req, res) {
+        res.send(500);
+    },
+    
+    
+    <div id="method-Ext.Servlet-deliverFile"></div>/**
+     * Delivers a file requested via HTTP/GET
+     *
+     * @param {Object} req Request object
+     * @param {object} res Response object
+     * @param {String} filePath Path of file to deliver
+     * @param {Object} fs Filesystem module reference
+     * @return void
+     */
+    deliverFile: function(req, res, filePath, fs) {
+    
+        var contentType = global.App.mime.lookup(filePath);
+                
+        // Synchronous deliver the content
+        res.writeHead(200, {'Content-Type': contentType});
+        res.write(fs.readFileSync(filePath, "binary"), "binary");
+        res.end();
+        
+        delete contentType;
+    }
+}); </pre>    
+</body>
+</html>

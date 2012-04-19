@@ -1,0 +1,150 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.Platform"></div>/**
+ * @class Ext.Platform 
+ * @singleton 
+ * 
+ * Platform detection class: Shortcuts: Ext.is & Ext.on.
+ *  
+ * Usage:
+ * 
+ * // Conditioning 
+ * if (Ext.is.Android) {...}
+ * 
+ * // Conditional function calling
+ * Ext.is.onAndroid(function() {
+ *     ...
+ * }, this);      
+ * 
+ * // With shortcut:
+ * onAndroid(function() {
+ *     ...
+ * }, this);   
+ */ 
+Ext.define("Ext.Platform", {
+
+
+    singleton: true,
+    
+           
+    <div id="prop-Ext.Platform-Android"></div>/**
+     * @type {Boolean} Android flag
+     */         
+    Android: false,
+          
+          
+    <div id="prop-Ext.Platform-iPhone"></div>/**
+     * @type {Boolean} iPhone flag
+     */         
+    iPhone: false,
+    
+    
+    <div id="prop-Ext.Platform-iPad"></div>/**
+     * @type {Boolean} iPad flag
+     */         
+    iPad: false,
+    
+    
+    <div id="method-Ext.Platform-detect"></div>/**
+     * Detects the current mobile platform and
+     * sets the local attributes according to the result.
+     * 
+     * @return void               
+     */      
+    detect: function() {
+    
+        if (Titanium.Platform.osname == "android") {
+            Ext.Platform.Android = true;
+        }
+        
+        if (Titanium.Platform.osname == "iphone") {
+            Ext.Platform.iPhone = true;
+        }
+        
+        if (Titanium.Platform.osname == "ipad") {
+            Ext.Platform.iPad = true;
+        }
+        return this;
+    },
+    
+    
+    <div id="method-Ext.Platform-_taintCall"></div>/**
+     * Calls the given function only if the boolean
+     * value of the local platform / os name is true.
+     * 
+     * @param {String} osName Name of the OS
+     * @param {Function} fn Function to call
+     * @param {Object} scope Scope to call fn with
+     * @param {Array} args Arguments to call fn with
+     * @return void                                   
+     */         
+    _taintCall: function(osName, fn, scope, args) {
+        
+        if (typeof scope == "undefined" && scope == null) {
+            scope = {};
+        }
+        
+        if (typeof args == "undefined" && args == null) {
+            args = [];
+        }
+    
+        if (this[osName] && this[osName] === true) {
+            fn.apply(scope, args);
+        }
+    },
+    
+    
+    <div id="method-Ext.Platform-onAndroid"></div>/**
+     * Given function gets only called if running on Android
+     * 
+     * @param {Function} fn Function to call
+     * @param {Object} scope Scope to call fn with (Optional)
+     * @param {Array} args Arguments to call fn with (Optional)
+     */         
+    onAndroid: function(fn) {
+        Ext.Platform._taintCall("Android", fn, arguments[1], arguments[2]);
+    },
+    
+    
+    <div id="method-Ext.Platform-oniPhone"></div>/**
+     * Given function gets only called if running on iPhone
+     * 
+     * @param {Function} fn Function to call
+     * @param {Object} scope Scope to call fn with (Optional)
+     * @param {Array} args Arguments to call fn with (Optional)
+     */         
+    oniPhone: function(fn) {
+        Ext.Platform._taintCall("iPhone", fn, arguments[1], arguments[2]);
+    },
+    
+    
+    <div id="method-Ext.Platform-oniPad"></div>/**
+     * Given function gets only called if running on iPad
+     * 
+     * @param {Function} fn Function to call
+     * @param {Object} scope Scope to call fn with (Optional)
+     * @param {Array} args Arguments to call fn with (Optional)
+     */         
+    oniPad: function(fn) {
+        Ext.Platform._taintCall("iPad", fn, arguments[1], arguments[2]);
+    }
+
+});
+
+// Detect the platform
+Ext.Platform.detect();
+
+// Create shortcuts
+Ext.is = Ext.Platform;
+
+// Shortcut for conditional function calling
+global.onAndroid = Ext.Platform.onAndroid;
+global.oniPhone = Ext.Platform.oniPhone;
+global.oniPad = Ext.Platform.oniPad;</pre>    
+</body>
+</html>

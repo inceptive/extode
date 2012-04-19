@@ -1,0 +1,64 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.Registry"></div>/**
+ * @class Ext.Registry
+ * @singleton
+ * 
+ * Class for working with global variables. 
+ */ 
+Ext.define("Ext.Registry", {
+
+
+    singleton: true,
+    
+    
+    <div id="method-Ext.Registry-set"></div>/**
+     * Sets a value identified by name
+     *
+     * @param {String} name Name identifier
+     * @param {Mixed} value Value to set
+     * @return {void}
+     */
+    set: function(name, value) {
+        global.registry[name] = value;
+    },
+    
+    
+    <div id="method-Ext.Registry-get"></div>/**
+     * Returns value by name
+     *
+     * @return {Mixed} Value
+     */
+    get: function(name) {
+        return global.registry[name];
+    },
+    
+    
+    <div id="method-Ext.Registry-isset"></div>/**
+     * Checks if a key is exisitng in global registry
+     * 
+     * @return {Boolean}          
+     */         
+    isset: function(name) {
+        if (global.registry[name]) {
+            return true;
+        }
+        return false;
+    }
+});
+
+// Create registry namespace in global scope
+global.registry = {};
+
+// Shortcuts
+global.sessionStorage = {};
+global.sessionStorage.get = Ext.Registry.get;
+global.sessionStorage.set = Ext.Registry.set;
+global.sessionStorage.isset = Ext.Registry.isset;</pre>    
+</body>
+</html>

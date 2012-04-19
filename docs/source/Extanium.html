@@ -1,0 +1,240 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Extanium"></div>/**
+ * @class Extanium
+ * @singleton
+ * 
+ * <b>ATTENTION: Namespace is Ext here anyway.</b>  
+ * 
+ * <p>
+ * This base class of the Extanium framework introduces the 
+ * Extanium namespace and all it's core methods and properties.
+ * </p>
+ * 
+ * <p>
+ * To be used by: (Best practice: application/Profile.js)
+ * Ext.setProfile({
+ *     // Configuration goes here
+ * })  
+ * </p>   
+ *
+ * @author Aron Homberg
+ * @license MIT license
+ */
+Ext.apply(Ext, {
+
+     
+    <div id="cfg-Extanium-enableDebugging"></div>/**
+     * @cfg {Boolean} enableDebugging Controls, if log messages will be shown or not (default: false)
+     */
+    enableDebugging: false,
+    
+    
+    <div id="cfg-Extanium-enableVisualDebugging"></div>/**
+     * @cfg {Boolean} enableVisualDebugging Controls, if log messages will appear as alert dialogs (default: false)
+     */
+    enableVisualDebugging: false,
+    
+    
+    <div id="prop-Extanium-LOGLEVEL_WARN"></div>/**
+     * @type {String} LOGLEVEL_WARN Logs only warning messages 
+     */
+    LOGLEVEL_WARN: 'warn',
+    
+    
+    <div id="prop-Extanium-LOGLEVEL_INFO"></div>/**
+     * @type {String} LOGLEVEL_INFO Logs all appearing messages
+     */
+    LOGLEVEL_INFO: 'info',
+    
+    
+    <div id="prop-Extanium-LOGLEVEL_DEBUG"></div>/**
+     * @type {String} LOGLEVEL_DEBUG Logs warning and debug messages
+     */
+    LOGLEVEL_DEBUG: 'debug',
+    
+    
+    <div id="cfg-Extanium-locale"></div>/**
+     * @cfg {String} locale Current locale name
+     */         
+    locale: 'auto',
+    
+    
+    /**
+     * Translation storage object    
+     * @private
+     */         
+    translations: {},
+    
+    
+    <div id="cfg-Extanium-enableTestMode"></div>/**
+     * @cfg {Boolean} enableTestMode Test mode
+     */         
+    enableTestMode: false,
+    
+    
+    <div id="method-Extanium-log"></div>/**
+     * Method for logging
+     *      
+     * @param {Mixed} logMessage Message to log
+     * @param {String} severity  Severity role name
+     * @return void
+     */
+    log: function(logMessage) {
+    
+        var severity = Ext.LOGLEVEL_INFO;
+        if (Ext.isDefined(arguments[1])) {
+            severity = arguments[1];
+        }
+        
+        // Only log if debugging is enabled
+        if (Ext.enableDebugging) {
+    
+            // Pretty-print if JSON
+            if (Ext.isObject(logMessage)) {
+                logMessage = JSON.stringify(logMessage);
+            }
+        
+            Ti.API[severity]('[Extanium] ' + logMessage);
+            
+            // Show alert message box
+            if (Ext.enableVisualDebugging) {
+                Ext.alert('[Extanium] ' + logMessage);
+            }
+        }
+    },
+    debug: function(msg) { Ext.log(msg, Ext.LOGLEVEL_DEBUG)},
+    warn: function(msg) { Ext.log(msg, Ext.LOGLEVEL_WARN)},  
+    
+    
+    <div id="method-Extanium-alert"></div>/**
+     * Shows an alert box
+     *
+     * @param {String} title Title of the alert box
+     * @return void
+     */
+    alert: function(msg) {
+    
+        var dialog = Ti.UI.createAlertDialog({
+            title: "Alert",
+            message: msg,
+            buttonNames: ['Close']
+        });
+        dialog.addEventListener('click', function() {
+            dialog.hide();
+        });
+        dialog.show();
+    },
+    
+    
+    <div id="method-Extanium-tr"></div>/**
+     * Translates a given translation string.
+     * The translation needs to be added by Ext.addTranslation() before.     
+     * 
+     * @param {Object} origClass Class prototype object
+     * @param {Object} transObj  Object holding translation values
+     * @return void
+     */
+    tr: function(translationKey) {
+    
+        if (Ext.isDefined(Ext.translations[Ext.locale]) &&
+            Ext.isDefined(Ext.translations[Ext.locale][translationKey])) {
+            return global.Translations[Ext.locale][translationKey];
+        } else {
+          return translationKey;
+        }
+    },
+    
+    
+    <div id="method-Extanium-setProfile"></div>/**
+     * Applies the application profile to the Ext object
+     * 
+     * @param {Object} profile Application profile          
+     * @return void
+     */                   
+    setProfile: function(profile) {
+        Ext.apply(Ext, profile);
+        
+        var locale = Ti.Platform.locale;
+        if (profile.locale != "auto") {
+            locale = profile.locale;
+        }
+        Ext.locale = locale;
+        Ext.include('/locale/' + locale + '.js');
+    },
+    
+    
+    <div id="method-Extanium-addTranslation"></div>/**
+     * Adds a translation
+     * 
+     * @param {String} locale Locale name
+     * @param {Object} translation Translation object key -> value
+     * @return void                    
+     */     
+    addTranslation: function(locale, translation) {
+    
+        if (typeof global.Translations == "undefined") {
+            global.Translations = {};
+        };
+        global.Translations[locale] = translation;
+    },
+    
+    
+    <div id="method-Extanium-runTestsIfTestModeEnabled"></div>/**
+     * Includes the tests of the libraries given as
+     * arguments into this function. 
+     *      
+     * (Google "javascript function arguments" if confused!)       
+     * 
+     * @param {String} As many module names as you want.    
+     * @return void                    
+     */         
+    runTestsIfTestModeEnabled: function() {
+        if (Ext.enableTestMode === true) {
+            for (index in arguments) {
+                Ext.include('/tests/' + arguments[index] + '.js');
+            }
+        }
+    },
+    
+    
+    <div id="method-Extanium-loadClassesByNames"></div>/**
+     * Loads classes by name from a specific base directory.
+     * Classes can be specified as array.     
+     * 
+     * @param {Array} classNames Class names
+     * @param {String} baseDir Base directory               
+     * @return void
+     */              
+    loadClassesByNames: function(classNames, baseDir) {
+        for (var i=0; i<classNames.length; i++) {
+            Ext.include(baseDir + "/" + classNames[i] + ".js");
+        }
+    },
+    
+    
+    <div id="method-Extanium-include"></div>/**
+     * Loads the path specified
+     *      
+     * @param {String} path Path to load
+     * @return void          
+     */         
+    include: function(path) {
+        Ti.include(path);
+    }
+});
+
+// global is a reference for the global scope.
+// We reference global methods here as shortcuts.
+global._ = Ext.tr;
+global.alert = Ext.alert;
+global.log = Ext.log;
+global.warn = Ext.warn;
+global.debug = Ext.debug;</pre>    
+</body>
+</html>

@@ -1,0 +1,112 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.Controller"></div>/**
+ * @class Ext.Controller
+ *  
+ * Represents a controller.
+ * 
+ * To be used via: Ext.controller({
+ *     // Configuration goes here
+ * })    
+ *  
+ * Each instance registers by it's name attribute and is
+ * fetchable by:
+ * 
+ * var controller = Ext.getController('nameOfTheController');     
+ */ 
+Ext.define('Ext.Controller', {
+                
+    mixins: ['Ext.util.Observable'],
+
+    statics: {
+    
+        <div id="method-Ext.Controller-create"></div>/**
+         * Defines an controller and registers it's views generically. 
+         * 
+         * @param {Object} cfg Controller configuration
+         * @return void     
+         */         
+        create: function(cfg) {
+            
+            if (typeof global.Controllers == "undefined") {
+                global.Controllers = {};
+            };
+            global.Controllers[cfg.name] = new Ext.Controller(cfg);
+        },
+        
+        
+        <div id="method-Ext.Controller-get"></div>/**
+         * Returns the controller instance for a name
+         * 
+         * @param {String} name Name of the controller                  
+         * @return {Ext.Controller}         
+         */                 
+        get: function(name) {
+            return global.Controllers[name];
+        }
+    },
+
+
+    <div id="cfg-Ext.Controller-name"></div>/**
+     * @cfg {String} name Name of the controller
+     */         
+    name: '',
+    
+    
+    <div id="cfg-Ext.Controller-views"></div>/**
+     * @cfg {Array} views View names
+     */         
+    views: [],
+    
+    
+    /**
+     * Application instance reference
+     * @private
+     */
+    application: null,
+    
+    
+    <div id="method-Ext.Controller-constructor"></div>/**
+     * Constructor for the controller class
+     *
+     * @param {Object} cfg Config overlay
+     * @return void          
+     */         
+    constructor: function(cfg) {
+    
+        // Overlay all given Ext.application()  
+        // configs to this instance
+        Ext.apply(this, cfg);
+        
+        if (Ext.isDefined(this.application) &&
+            this.application !== null) {
+        
+            // Load views
+            Ext.loadClassesByNames(this.views, this.application.appFolder + "/view");
+            
+        } else {
+            throw "No application reference specified for controller: " + this.name;
+        }
+        
+        // Call the init() method
+        this.init();
+    },
+    
+    
+    <div id="method-Ext.Controller-init"></div>/**
+     * Get's automatically called on instance creation.
+     * @return void     
+     */         
+    init: function() {}
+});
+
+// Shortcut
+Ext.controller = Ext.Controller.create;
+Ext.getController = Ext.Controller.get;</pre>    
+</body>
+</html>

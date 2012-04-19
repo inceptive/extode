@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+<head profile="http://gmpg.org/xfn/11">
+<title>MNUG - Munich NodeJS User Group</title>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="/assets/layout.css" type="text/css" />
+
+    <ejs>- Extode.headScripts()</ejs>
+
+    <script type="text/javascript">var key = {
+         'mnug.de': 'ABQIAAAABR_Vs5W2OVvbTbYflFRkBxTY12-EvIQN98uI4gz5E76M_MkZ9RQN6ywuO8DESAjJUDR5E-SJVi8dVg',
+	     'www.mnug.de': 'ABQIAAAABR_Vs5W2OVvbTbYflFRkBxQOQVPKYJyW5lTa59k4LFqB0DY2PRRFF1wYikg4wFWt7haoxL7io3J1RA',
+	     'localhost:9999': 'ABQIAAAABR_Vs5W2OVvbTbYflFRkBxQqGxktpl5jKazhAth9qlTnX3EF3xTibnY76y8xxr354-FMNk_vZJLhQA'
+      }[document.location.host];
+
+      document.write(
+	      '<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=' + key + '" type="text/javascript"><\/script>');
+	</script>
+
+
+    <script type="text/javascript">
+    //<![CDATA[
+
+      function drawMap()
+      {
+        if(GBrowserIsCompatible())
+        {
+          var map = new GMap2(document.getElementById("map"));
+
+          map.addControl(new GSmallMapControl());
+          map.addControl(new GOverviewMapControl());
+          map.addControl(new GScaleControl());
+          map.setCenter(new GLatLng(48.187663, 11.654348), 15, G_NORMAL_MAP);
+
+          var praxisll = new GLatLng(48.187663, 11.654348);
+          var praxismark = new GMarker(praxisll);
+          map.addOverlay(praxismark);
+
+          var praxisdesc= "<div style='font-weight:bold;border-bottom:1px solid #cccccc;padding-bottom:5px;font-color:#000000'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TNG Technology</div>"
+                        + "<table><tr><td width='20px' valign='top'><img src='img/home.png'></img></td><td><div style='padding-left:10px;'>Consulting GmbH<br />"
+                        + "Betastraße 13a<br />"
+                        + "85774 Unterföhring<br /><br /></div>"
+                        + "</td></tr></table>";
+          praxismark.openInfoWindowHtml(praxisdesc);
+
+          GEvent.addListener(praxismark, "click", function()
+          {
+            praxismark.openInfoWindowHtml(praxisdesc);
+          });
+        }
+      }
+    //]]>
+    </script>
+
+
+</head>
+<body id="top">
+
+    <!--<img src="/assets/images/bg.jpg" style="width: 100%;height:100%;z-index: -1;position: absolute;left: 0px; top:0px" />-->
+
+    <div class="wrapper" style="margin-top: 20px;">
+      <div id="header">
+            <center>
+                <img src="/assets/images/mnug.png"></img>
+            </center>
+      </div>
+    </div>
+
+
+    <div class="wrapper">
+      <div id="topbar">
+        <div class="fl_left">
+            <!--
+            <span style="color:#222">News:</span>
+            <a href="/article/next_meeting_1_december.ejs">Upcoming meeting: 1. December 2011 @ TNG Technology Consulting, Unterföhring.</a>
+            -->
+        </div>
+          <!--
+        <div class="fl_right">
+          <form action="#" onsubmit="return Extode.searchContent()">
+            <fieldset>
+              <legend>Site Search</legend>
+              <input id="searchfield" type="text" value="Search our website&hellip;"  onfocus="this.value=(this.value=='Search our website&hellip;')? '' : this.value ;" />
+              <input type="submit" name="go" id="go" value="Search" />
+            </fieldset>
+          </form>
+        </div>
+        -->
+        <br class="clear" />
+      </div>
+    </div>
+
+    <ejs>
+        // Navi hover server-side script
+        var homeActive = "", meetupsActive = "", speakersActive = "", aboutActive = "", imprintActive = "";
+        switch (Request.params[0]) {
+            case 'index.ejs':
+            case '':
+                homeActive = "active";
+                break;
+            case 'speakers':
+                speakersActive = "active";
+                break;
+            case 'about':
+                aboutActive = "active";
+                break;
+            case 'imprint':
+                imprintActive = "active";
+                break;
+            case 'meetups/dezember2011':
+                meetupsActive = "active";
+                break;
+
+        }
+
+
+    </ejs>
+
+    <div class="wrapper">
+      <div id="topnav">
+        <ul class="nav">
+          <li class="<ejs>-homeActive</ejs>"><a href="/">Home</a></li>
+          <li class="<ejs>-meetupsActive</ejs>"><a href="#">Meetups</a>
+            <ul>
+              <li><a href="/artikel/meetups/dezember2011">1. Dec. 2011</a></li>
+            </ul>
+          </li>
+          <li class="<ejs>-speakersActive</ejs>"><a href="/artikel/speakers">Speakers &amp; Talks</a></li>
+          </li>
+          <li class="<ejs>-aboutActive</ejs>"><a href="/artikel/about">About</a></li>
+          <li class="last <ejs>-imprintActive</ejs>"><a href="/artikel/imprint">Imprint</a></li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+    </div>
+
+
+    <div class="wrapper">
+      <div class="container">
+
+          <div id="container">
+
+              <div id="sidebar">
+
+                  <h2>Next Meetup</h2>
+                    <p>
+                        <a style="font-size:18px" href="/artikel/meetups/dezember2011">1. December 2011</a><br /> @ Unterföhring
+                    </p>
+
+                    <br />
+
+
+                    <h2>MNUG Google Group</h2>
+
+                    <p>
+                        Join our Google Group for discussions: <a target="_blank" href="http://groups.google.com/group/munichnug?hl=de">MNUG Group</a>
+                    </p>
+
+                    <br />
+
+
+                    <h2>Follow us!</h2>
+
+                    <p>
+                        On twitter: <a target="_blank" href="https://twitter.com/#!/munichnug">#munichnug</a>
+                    </p>
+
+                     <br />
+                  <img width="200px" height="200px" src="/assets/images/JSLogo.png" />
+
+                    
+              </div>
+
+              <div style="float:left;width: 550px;">

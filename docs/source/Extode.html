@@ -1,0 +1,114 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Extode"></div>/**
+ * @class Extode
+ * @singleton
+ * 
+ * <b>ATTENTION: Namespace is Ext here anyway.</b>  
+ * 
+ * <p>
+ * This base class of the Extanium framework introduces the 
+ * Extanium namespace and all it's core methods and properties.
+ * </p>
+ * 
+ * <p>
+ * To be used by: (Best practice: application/Profile.js)
+ * Ext.setProfile({
+ *     // Configuration goes here
+ * })  
+ * </p>   
+ *
+ * @author Aron Homberg
+ * @license MIT license
+ */
+Ext.apply(Ext, {
+
+     
+    /**
+     * Contains the directory path to autoload app files from
+     * @private
+     */
+    appDirPath: __dirname,
+    
+    
+    <div id="method-Extode-loadClassesByNames"></div>/**
+     * Loads classes by name from a specific base directory.
+     * Classes can be specified as array.     
+     * 
+     * @param {Array} classNames Class names
+     * @param {String} baseDir Base directory               
+     * @return void
+     */              
+    loadClassesByNames: function(classNames, baseDir) {
+        for (var i=0; i<classNames.length; i++) {
+            Ext.require(baseDir + "/" + classNames[i] + ".js");
+        }
+    },
+    
+    
+    <div id="method-Extode-require"></div>/**
+     * Loads the path specified
+     *      
+     * @param {String} path Path to load
+     * @param {Function} cb Callback to call when file is loaded
+     * @return {Mixed}          
+     */         
+    require: function(path, cb) {
+        var inst = require(path);
+        
+        if (Ext.isDefined(cb) && Ext.isFunction(cb)) {
+            cb(inst);
+        }
+        return inst;
+    },
+    
+    
+    <div id="method-Extode-setAppDir"></div>/**
+     * Sets the application's directory
+     *
+     * @param {String} appDirPath Application directory path
+     * @retrun void
+     */
+    setAppDir: function(appDirPath) {
+        Ext.appDirPath = appDirPath;
+    },
+    
+    
+    <div id="method-Extode-getAppDir"></div>/**
+     * Returns the previously set application directory path
+     * or the path to the Extanium library.
+     * @return {String}
+     */
+    getAppDir: function() {
+        return Ext.appDirPath;
+    },
+    
+    
+    <div id="method-Extode-decode"></div>/**
+     * Decodes a given json string to a native object
+     *
+     * @param {String} json JSON text
+     * @return {Mixed}
+     */
+    decode: function(json) {
+        return JSON.parse(json);
+    },
+
+
+    <div id="method-Extode-encode"></div>/**
+     * Encodes a given object to a JSON string
+     *
+     * @param {Mixed} obj Native object
+     * @return {String}
+     */
+    encode: function(obj) {
+        return JSON.stringify(obj);
+    }
+});</pre>    
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.Ajax"></div>/**
+ * @class Ext.Ajax
+ *
+ * <p>
+ * Shortcut class for Ext.data.Connection. 
+ * </p>
+ * 
+ * @see Ext.data.Connection  
+ */
+Ext.define("Ext.Ajax", { 
+
+    
+    singleton: true,
+    
+    
+    <div id="method-Ext.Ajax-request"></div>/**
+     * Fires a request via HTTP protocol as configured in the given config
+     * object: Works like Ext JS's Ext.Ajax / Ext.data.Connection impl.          
+     *     
+     * <p>
+     * Possible configuration:
+     * </p>
+     *
+     * <p>
+     * <code> 
+     * <pre>
+     * Ext.Ajax.request({
+     *     url: '',
+     *     success: function(result) {},
+     *     failure: function() {},
+     *     headers: { // Special HTTP request headers like X-*
+     *         X-Requested-With: 'Extanium'
+     *     },
+     *     params: { // HTTP POST parameters
+     *         user: 'foo',
+     *         password: 'bar'
+     *     }, // OR INSTEAD OF params!! data: 'ABC' for plain data sending
+     *     timeout: 5, // In seconds
+     *     method: 'POST', // Which HTTP method to use?
+     *     json: true, // Parses incomming text-result automatically and provide result.json object
+     *     async: true, 
+     *     secure: false // HTTPS cert checking
+     * });
+     * </pre>
+     * </code>    
+     * </p>
+     * 
+     * <p>
+     * <b>The example above shows the default configuration.</b>
+     * </p>
+     *
+     * <p>
+     * <pre>
+     * success: function(result) {
+     *     debug(result.data);
+     *     debug(result.xml);
+     *     debug(result.text);
+     *     debug(result.json); // Only if json: true is defined (provides auto-deserialization)
+     * } 
+     * </pre>
+     * </p>          
+     * 
+     * @param {Object} cfg Configuration of the request
+     * @return {Ti.Network.HttpClient|Boolean} HTTP client instance or false          
+     */         
+    request: function(cfg) {
+        return new Ext.net.HttpClient().request(cfg);
+    }
+});</pre>    
+</body>
+</html>

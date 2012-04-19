@@ -1,0 +1,1 @@
+java -jar tools/ext-doc-1.0.131/ext-doc.jar -p tools/ext-doc-1.0.131/sample/ext.xml -o docs -t tools/ext-doc-1.0.131/template/ext/template.xml -verbose

@@ -1,0 +1,65 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.SessionStorage"></div>/**
+ * @class Ext.SessionStorage
+ * @singleton
+ * 
+ * Class for working with global variables. 
+ * Implementation of the HTML 5 SessionStorage API. 
+ */ 
+Ext.define("Ext.SessionStorage", {
+
+
+    singleton: true,
+    
+    
+    <div id="method-Ext.SessionStorage-set"></div>/**
+     * Sets a value identified by name
+     *
+     * @param {String} name Name identifier
+     * @param {Mixed} value Value to set
+     * @return {void}
+     */
+    set: function(name, value) {
+        global.sessionStorageData[name] = value;
+    },
+    
+    
+    <div id="method-Ext.SessionStorage-get"></div>/**
+     * Returns value by name
+     *
+     * @return {Mixed} Value
+     */
+    get: function(name) {
+        return global.sessionStorageData[name];
+    },
+    
+    
+    <div id="method-Ext.SessionStorage-isset"></div>/**
+     * Checks if a key is exisitng in global registry
+     * 
+     * @return {Boolean}          
+     */         
+    isset: function(name) {
+        if (global.sessionStorageData[name]) {
+            return true;
+        }
+        return false;
+    }
+});
+
+// Create registry namespace in global scope
+global.sessionStorageData = {};
+
+// Shortcuts
+global.sessionStorage = {};
+global.sessionStorage.get = Ext.SessionStorage.get;
+global.sessionStorage.set = Ext.SessionStorage.set;
+global.sessionStorage.isset = Ext.SessionStorage.isset;</pre>    
+</body>
+</html>

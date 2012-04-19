@@ -1,0 +1,231 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.app.Application"></div>/**
+ * @class Ext.app.Application
+ *
+ * Represents the application.
+ * Instance registers as: App in global scope!
+ *
+ * To be used via: Ext.application({
+ *     // Configuration goes here
+ * })
+ */
+Ext.define('Ext.app.Application', {
+
+    mixins: ['Ext.util.Observable'],
+
+    statics: {
+
+        <div id="method-Ext.app.Application-create"></div>/**
+         * Defines an application and registers it's services generically.
+         *
+         * @param {Object} cfg Application configuration
+         * @return void
+         */
+        create: function(cfg) {
+            return new Ext.app.Application(cfg);
+        }
+    },
+
+
+    <div id="cfg-Ext.app.Application-name"></div>/**
+     * @cfg {String} name Name of the app
+     */
+    name: '',
+    
+    
+    <div id="cfg-Ext.app.Application-enableDebugging"></div>/**
+     * @cfg {Boolean} enableDebugging Enables application debugging
+     */
+    enableDebugging: false,
+    
+    
+    <div id="cfg-Ext.app.Application-autoServeHttp"></div>/**
+     * @cfg {Boolean} autoServeHttp Automatically serves static files for requests from the app folder
+     */
+    autoServeStaticFiles: true,
+
+
+    <div id="cfg-Ext.app.Application-services"></div>/**
+     * @cfg {Array} services Service names
+     */
+    services: [],
+
+
+    <div id="cfg-Ext.app.Application-servlets"></div>/**
+     * @cfg {Array} servlets Servlet names
+     */
+    servlets: [],
+
+
+    <div id="cfg-Ext.app.Application-appFolder"></div>/**
+     * @cfg {String} appFolder Application folder
+     */
+    appFolder: 'app',
+    
+    
+    <div id="cfg-Ext.app.Application-webFolder"></div>/**
+     * @cfg {String} webFolder Web folder inside the app folder
+     */
+    webFolder: 'www',
+    
+    
+    /**
+     * Socket reference
+     * @private
+     */
+    socket: null,
+    
+    
+    /**
+     * Socket.io reference
+     * @private
+     */
+    io: null,
+    
+    
+    /**
+     * Webserver reference (Express)
+     * @private
+     */
+    webserver: null,
+    
+    
+    /**
+     * Mime-magic module reference
+     * @private
+     */
+    mime: null,
+    
+    
+    <div id="method-Ext.app.Application-constructor"></div>/**
+     * Constructor for the application class
+     *
+     * @param {Object} cfg Config overlay
+     * @return void
+     */
+    constructor: function(cfg) {
+
+        // Overlay all given Ext.application()
+        // configs to this instance
+        Ext.apply(this, cfg);
+        
+        // Apply an app profile
+        if (Ext.isDefined(cfg.enableDebugging)) {
+            Ext.enableDebugging = cfg.enableDebugging;
+        }
+        
+        // Global application reference if the 
+        // Application was already created
+        global.App = this;
+        
+        // Automatically serve static files from HTTP requests
+        if (Ext.isDefined(cfg.autoServeStaticFiles) &&
+            cfg.autoServeStaticFiles === true) {
+            this.initDefaultServlet();
+        }
+        
+        // Load servlets (Will be instanciated on server start)
+        Ext.loadClassesByNames(this.servlets, Ext.getAppDir() + "/" + this.appFolder + "/servlet");
+    
+        // Load services (Will be instanciated on connection event)
+        Ext.loadClassesByNames(this.services, Ext.getAppDir() + "/" + this.appFolder + "/service");
+        
+        // Initialize a listening the socket
+        this.initSocket();
+        
+        // Call the launch() method
+        this.launch();
+    },
+    
+    
+    /**
+     * Needs to be called in initSocket() after the
+     * socket.io configuration has finished and a 
+     * listening sockets config object (io) was created
+     * @private
+     */
+    initSocket: function() {
+    
+        var io = this.io, me = this;
+        
+        if (!Ext.isDefined(io) || io === null || !Ext.isDefined(io.sockets) || io.sockets === null) {
+            throw "No valid socket.io configuration created on first line of App.js. Please recheck to create an instance of var io = require($pathToSocketDotIo).listen($config) there!"
+        }
+    
+        // On socket connect, call launch() 
+        io.sockets.on('connection', function (socket) {
+        
+            me.socket = socket;
+            
+            // Initializes the registered services
+            me.initServices();
+        });
+    },
+    
+    
+    /**
+     * Initializes the services specified by
+     * this.services.
+     *
+     * @private
+     * @return void
+     */
+    initServices: function() {
+        
+        // Create an instance of each registered service
+        for (name in global.Services) {
+            new Ext.app.Service(global.Services[name]);
+        }
+    },
+    
+    
+    <div id="method-Ext.app.Application-initDefaultServlet"></div>/**
+     * Starts the automatic dispatching of static files
+     * via HTTP
+     * @return void
+     */
+    initDefaultServlet: function() {
+        Ext.servlet({
+            name: 'Default',
+            init: function() {
+                this.handle("GET", "/*", Ext.Servlet.dispatchStaticFiles);
+            }
+        });
+    },
+    
+    
+    <div id="method-Ext.app.Application-getSocket"></div>/**
+     * Returns the connected socket 
+     * @return {Object}
+     */
+    getSocket: function() {
+        return this.socket;
+    },
+    
+    
+    <div id="method-Ext.app.Application-getWebServer"></div>/**
+     * Returns the webserver reference 
+     * @return {Object}
+     */
+    getWebServer: function() {
+        return this.webserver;
+    },
+    
+
+    <div id="method-Ext.app.Application-launch"></div>/**
+     * Get's automatically called on app launch.
+     * @return void
+     */
+    launch: function() {}
+});
+
+// Shortcut
+Ext.application = Ext.app.Application.create;</pre>    
+</body>
+</html>

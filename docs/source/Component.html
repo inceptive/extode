@@ -1,0 +1,136 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.Component"></div>/**
+ * @class Ext.Component
+ * 
+ * Class for supersetting and wrapping the Titanium UI components
+ * API in the way Ext JS does.   
+ */  
+Ext.define('Ext.Component', {
+
+    extend: 'Ext.Class',
+    mixins: ['Ext.util.Observable'],
+    
+    
+    <div id="cfg-Ext.Component-id"></div>/**
+     * @cfg {String} id Id of the component _instance_
+     */         
+    id: null,
+    
+    
+    <div id="cfg-Ext.Component-xtype"></div>/**
+     * @cfg {String} xtype Component type name
+     */         
+    xtype: 'component',
+    
+    
+    <div id="cfg-Ext.Component-nativeXtype"></div>/**
+     * @cfg {String} nativeXtype Native component type of the view (defaults to window)
+     */         
+    nativeXtype: 'Window',
+    
+    
+    <div id="cfg-Ext.Component-nativeConfig"></div>/**
+     * @cfg {Object} nativeConfig Config object to provide to the native cmp
+     */         
+    nativeConfig: {},
+    
+    
+    /**
+     * Native component instance internal reference    
+     * @private     
+     */         
+    nativeCmp: null,
+    
+    
+    /**
+     * Contains the instances of added Ext.Component instances
+     * @private     
+     */         
+    addedCmps: [],
+    
+    
+    /**
+     * Represents the hidden/shown flag
+     * @private
+     */
+    hidden: false,
+    
+    
+    /**
+     * Gets called on instance creation.
+     * Creates the native component and calls
+     * this.initComponent()
+     *                    
+     * @param {Object} cfg Optional overlay config     
+     * @private
+     */         
+    constructor: function() {
+    
+       // Call Class constructor for dynamic overlaying
+       Ext.Component.superclass.constructor.apply(this, arguments);
+       
+       // Register in component manager with id
+       // If this.id is null, a id will be auto-generated (sequence)
+       Ext.ComponentManager.registerInstance(this.id, this);
+    
+       // Call initComponent()
+       this.initComponent();
+    },
+    
+    
+    <div id="method-Ext.Component-initComponent"></div>/**
+     * Gets called when the superclass constructor was called and
+     * the native component was created.
+     *       
+     * @return {Ext.Component}     
+     */         
+    initComponent: function() {
+    
+       // Implement user code here
+    },
+    
+    
+    <div id="method-Ext.Component-add"></div>/**
+     * Adds an Ext.Component instance to the component
+     * 
+     * @param {Ext.Component} cmp Component to add
+     * @return {Ext.Component}               
+     */         
+    add: function(cmp) {
+    
+        this.addedCmps.push(cmp);
+        return this;
+    },
+    
+    
+    <div id="method-Ext.Component-hide"></div>/**
+     * Hides the component
+     * @return void          
+     */         
+    hide: function() {
+        this.hidden = true;
+    },
+    
+    
+    <div id="method-Ext.Component-show"></div>/**
+     * Shows the component
+     * @return void          
+     */         
+    show: function() {
+        this.hidden = false;
+    }
+    
+    
+    // TODO: remove(), destroy()
+});
+
+// Register component by xtype
+Ext.reg('component', Ext.Component);</pre>    
+</body>
+</html>

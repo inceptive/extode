@@ -1,0 +1,188 @@
+<div class="body-wrap" xmlns:ext="http://www.extjs.com"><div class="top-tools"><a class="inner-link" href="#Ext-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>&#13;<a class="inner-link" href="#Ext-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>&#13;<a class="inner-link" href="#Ext-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>&#13;<a class="bookmark" href="../docs/?class=Ext"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>&#13;</div><h1>Class <a href="source/Ext.html#cls-Ext">Ext</a></h1><table cellspacing="0"><tr><td class="label">Package:</td><td class="hd-info">Global</td></tr><tr><td class="label">Defined In:</td><td class="hd-info"><a href="source/Ext.html#cls-Ext">Ext.js</a></td></tr><tr><td class="label">Class:</td><td class="hd-info"><a href="source/Ext.html#cls-Ext">Ext</a></td></tr><tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr></table><div class="description">Ext core utilities and functions.<br><br><i>This class is a singleton and cannot be created directly.</i></div><div class="hr"></div><a id="Ext-props"></a><h2>Public Properties</h2><div class="no-members">This class has no public properties.</div><a id="Ext-methods"></a><h2>Public Methods</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Method</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-apply"></a><b><a href="source/Ext.html#method-Ext-apply">apply</a></b>(&nbsp;<code>Object&nbsp;obj</code>,&nbsp;<code>Object&nbsp;config</code>,&nbsp;<code>Object&nbsp;defaults</code>&nbsp;)
+    :
+                                        Object<div class="mdesc"><div class="short">Copies all the properties of config to obj.</div><div class="long">Copies all the properties of config to obj.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>obj</code> : Object<div class="sub-desc">The receiver of the properties</div></li><li><code>config</code> : Object<div class="sub-desc">The source of the properties</div></li><li><code>defaults</code> : Object<div class="sub-desc">A different object that will also be applied for default values</div></li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc">returns obj</div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-applyIf"></a><b><a href="source/Ext.html#method-Ext-applyIf">applyIf</a></b>(&nbsp;<code>Object&nbsp;obj</code>,&nbsp;<code>Object&nbsp;config</code>&nbsp;)
+    :
+                                        Object<div class="mdesc"><div class="short">Copies all the properties of config to obj if they don't already exist.</div><div class="long">Copies all the properties of config to obj if they don't already exist.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>obj</code> : Object<div class="sub-desc">The receiver of the properties</div></li><li><code>config</code> : Object<div class="sub-desc">The source of the properties</div></li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc">returns obj</div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-define"></a><b><a href="source/Ext.html#method-Ext-define">define</a></b>(&nbsp;<code>String&nbsp;className</code>,&nbsp;<code>Object&nbsp;classDef</code>,&nbsp;<code>Function&nbsp;callback</code>&nbsp;)
+    :
+                                        Function<div class="mdesc"><div class="short">Defines a class prototype in Ext JS 4-style.&#13;
+Currently supported:&#13;
+- singleton&#13;
+- extend&#13;
+- statics&#13;
+- mixins (multi...</div><div class="long">Defines a class prototype in Ext JS 4-style.
+Currently supported:
+- singleton
+- extend
+- statics
+- mixins (multiple inheritance)  
+- implicit naming (given string name references class constructor function)
+- callback after define
+- alias name
+- auto dependency check -> but no autoloading! (antipattern!)  
+Example of old style Ext JS 3 (also works):
+var lala = Ext.extend(Object, {
+muah1: true  
+});
+new lala();
+// You can now use:
+Ext.define("lulu", {
+haha: 15
+});
+Ext.define("lala2.lala", {
+muah: false,
+extend: 'lala',         
+mixins: ['lulu'],
+statics: {
+uha: true
+},
+alias: 'another.classname',
+singleton: true                  
+}, function(classRef) {
+console.debug('yeah, class was defined!');
+});
+Ext.log(another.classname;<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>className</code> : String<div class="sub-desc">Name of the class (even with namespaces)</div></li><li><code>classDef</code> : Object<div class="sub-desc">Class definition</div></li><li><code>callback</code> : Function<div class="sub-desc">Callback function called when class is defined</div></li></ul><strong>Returns:</strong><ul><li><code>Function</code><div class="sub-desc">Class proto constructor function</div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-each"></a><b><a href="source/Ext.html#method-Ext-each">each</a></b>(&nbsp;<code>Array/NodeList/Mixed&nbsp;array</code>,&nbsp;<code>Function&nbsp;fn</code>,&nbsp;<code>Object&nbsp;scope</code>&nbsp;)
+    :
+                                        See<div class="mdesc"><div class="short">Iterates an array calling the supplied function.</div><div class="long">Iterates an array calling the supplied function.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>array</code> : Array/NodeList/Mixed<div class="sub-desc">The array to be iterated. If this
+argument is not really an array, the supplied function is called once.</div></li><li><code>fn</code> : Function<div class="sub-desc">The function to be called with each item. If the
+supplied function returns false, iteration stops and this method returns
+the current <code>index</code>. This function is called with
+the following arguments:
+<div class="mdetail-params"><ul>
+<li><code>item</code> : <i>Mixed</i>
+<div class="sub-desc">The item at the current <code>index</code>
+in the passed <code>array</code></div></li>
+<li><code>index</code> : <i>Number</i>
+<div class="sub-desc">The current index within the array</div></li>
+<li><code>allItems</code> : <i>Array</i>
+<div class="sub-desc">The <code>array</code> passed as the first
+argument to <code>Ext.each</code>.</div></li>
+</ul></div></div></li><li><code>scope</code> : Object<div class="sub-desc">The scope (<code>this</code> reference) in which the specified function is executed.
+Defaults to the <code>item</code> at the current <code>index</code>
+within the passed <code>array</code>.</div></li></ul><strong>Returns:</strong><ul><li><code>See</code><div class="sub-desc">description for the fn parameter.</div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-extend"></a><b><a href="source/Ext.html#method-Ext-extend">extend</a></b>(&nbsp;<code>Function&nbsp;superclass</code>,&nbsp;<code>Object&nbsp;overrides</code>&nbsp;)
+    :
+                                        Function<div class="mdesc"><div class="short">Extends one class to create a subclass and optionally overrides members with the passed literal. This method&#13;
+also ad...</div><div class="long"><p>Extends one class to create a subclass and optionally overrides members with the passed literal. This method
+also adds the function "override()" to the subclass that can be used to override members of the class.</p>
+For example, to create a subclass of Ext GridPanel:
+<pre><code>MyGridPanel = Ext.extend(Ext.grid.GridPanel, {
+    constructor: <b>function</b>(config) {
+
+<i>//      Create configuration <b>for</b> this Grid.
+</i>
+        <b>var</b> store = <b>new</b> Ext.data.Store({...});
+        <b>var</b> colModel = <b>new</b> Ext.grid.ColumnModel({...});
+
+<i>//      Create a <b>new</b> config object containing our computed properties
+</i>
+<i>//      *plus* whatever was <b>in</b> the config parameter.
+</i>
+        config = Ext.apply({
+            store: store,
+            colModel: colModel
+        }, config);
+
+        MyGridPanel.superclass.constructor.call(this, config);
+
+<i>//      Your postprocessing here
+</i>
+    },
+
+    yourMethod: <b>function</b>() {
+        <i>// etc.
+</i>
+    }
+});</code></pre>
+<p>This function also supports a 3-argument call in which the subclass's constructor is
+passed as an argument. In this form, the parameters are as follows:</p>
+<div class="mdetail-params"><ul>
+<li><code>subclass</code> : Function <div class="sub-desc">The subclass constructor.</div></li>
+<li><code>superclass</code> : Function <div class="sub-desc">The constructor of class being extended</div></li>
+<li><code>overrides</code> : Object <div class="sub-desc">A literal with members which are copied into the subclass's
+prototype, and are therefore shared among all instances of the new class.</div></li>
+</ul></div><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>superclass</code> : Function<div class="sub-desc">The constructor of class being extended.</div></li><li><code>overrides</code> : Object<div class="sub-desc"><p>A literal with members which are copied into the subclass's
+prototype, and are therefore shared between all instances of the new class.</p>
+<p>This may contain a special member named <tt><b>constructor</b></tt>. This is used
+to define the constructor of the new class, and is returned. If this property is
+<i>not</i> specified, a constructor is generated and returned which just calls the
+superclass's constructor passing on its parameters.</p>
+<p><b>It is essential that you call the superclass constructor in any provided constructor. See example code.</b></p></div></li></ul><strong>Returns:</strong><ul><li><code>Function</code><div class="sub-desc">The subclass constructor from the &lt;code&gt;overrides&lt;/code&gt; parameter, or a generated one if not provided.</div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-isArray"></a><b><a href="source/Ext.html#method-Ext-isArray">isArray</a></b>(&nbsp;<code>Mixed&nbsp;value</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Returns true if the passed value is a JavaScript array, otherwise false.</div><div class="long">Returns true if the passed value is a JavaScript array, otherwise false.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>value</code> : Mixed<div class="sub-desc">The value to test</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-isBoolean"></a><b><a href="source/Ext.html#method-Ext-isBoolean">isBoolean</a></b>(&nbsp;<code>Mixed&nbsp;value</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Returns true if the passed value is a boolean.</div><div class="long">Returns true if the passed value is a boolean.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>value</code> : Mixed<div class="sub-desc">The value to test</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-isDate"></a><b><a href="source/Ext.html#method-Ext-isDate">isDate</a></b>(&nbsp;<code>Object&nbsp;object</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Returns true if the passed object is a JavaScript date object, otherwise false.</div><div class="long">Returns true if the passed object is a JavaScript date object, otherwise false.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>object</code> : Object<div class="sub-desc">The object to test</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-isDefined"></a><b><a href="source/Ext.html#method-Ext-isDefined">isDefined</a></b>(&nbsp;<code>Mixed&nbsp;value</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Returns true if the passed value is not undefined.</div><div class="long">Returns true if the passed value is not undefined.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>value</code> : Mixed<div class="sub-desc">The value to test</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-isEmpty"></a><b><a href="source/Ext.html#method-Ext-isEmpty">isEmpty</a></b>(&nbsp;<code>Mixed&nbsp;value</code>,&nbsp;<span title="Optional" class="optional">[<code>Boolean&nbsp;allowBlank</code>]</span>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Returns true if the passed value is empty.&#13;
+The value is deemed to be empty if it is&lt;div class="mdetail-params"&gt;&#13;
+nul...</div><div class="long"><p>Returns true if the passed value is empty.</p>
+<p>The value is deemed to be empty if it is<div class="mdetail-params"><ul>
+<li>null</li>
+<li>undefined</li>
+<li>an empty array</li>
+<li>a zero length string (Unless the <tt>allowBlank</tt> parameter is <tt>true</tt>)</li>
+</ul></div><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>value</code> : Mixed<div class="sub-desc">The value to test</div></li><li><code>allowBlank</code> : Boolean<div class="sub-desc">(optional) true to allow empty strings (defaults to false)</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-isFunction"></a><b><a href="source/Ext.html#method-Ext-isFunction">isFunction</a></b>(&nbsp;<code>Mixed&nbsp;value</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Returns true if the passed value is a JavaScript Function, otherwise false.</div><div class="long">Returns true if the passed value is a JavaScript Function, otherwise false.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>value</code> : Mixed<div class="sub-desc">The value to test</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-isNumber"></a><b><a href="source/Ext.html#method-Ext-isNumber">isNumber</a></b>(&nbsp;<code>Mixed&nbsp;value</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Returns true if the passed value is a number. Returns false for non-finite numbers.</div><div class="long">Returns true if the passed value is a number. Returns false for non-finite numbers.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>value</code> : Mixed<div class="sub-desc">The value to test</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-isObject"></a><b><a href="source/Ext.html#method-Ext-isObject">isObject</a></b>(&nbsp;<code>Mixed&nbsp;value</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Returns true if the passed value is a JavaScript Object, otherwise false.</div><div class="long">Returns true if the passed value is a JavaScript Object, otherwise false.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>value</code> : Mixed<div class="sub-desc">The value to test</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-isPrimitive"></a><b><a href="source/Ext.html#method-Ext-isPrimitive">isPrimitive</a></b>(&nbsp;<code>Mixed&nbsp;value</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Returns true if the passed value is a JavaScript 'primitive', a string, number or boolean.</div><div class="long">Returns true if the passed value is a JavaScript 'primitive', a string, number or boolean.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>value</code> : Mixed<div class="sub-desc">The value to test</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-isString"></a><b><a href="source/Ext.html#method-Ext-isString">isString</a></b>(&nbsp;<code>Mixed&nbsp;value</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Returns true if the passed value is a string.</div><div class="long">Returns true if the passed value is a string.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>value</code> : Mixed<div class="sub-desc">The value to test</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-iterate"></a><b><a href="source/Ext.html#method-Ext-iterate">iterate</a></b>(&nbsp;<code>Object/Array&nbsp;object</code>,&nbsp;<code>Function&nbsp;fn</code>,&nbsp;<code>Object&nbsp;scope</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Iterates either the elements in an array, or each of the properties in an object.&#13;
+Note: If you are only iterating ar...</div><div class="long">Iterates either the elements in an array, or each of the properties in an object.
+<b>Note</b>: If you are only iterating arrays, it is better to call <a href="output/Ext.html#Ext-each" ext:member="each" ext:cls="Ext">each</a>.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>object</code> : Object/Array<div class="sub-desc">The object or array to be iterated</div></li><li><code>fn</code> : Function<div class="sub-desc">The function to be called for each iteration.
+The iteration will stop if the supplied function returns false, or
+all array elements / object properties have been covered. The signature
+varies depending on the type of object being interated:
+<div class="mdetail-params"><ul>
+<li>Arrays : <tt>(Object item, Number index, Array allItems)</tt>
+<div class="sub-desc">
+When iterating an array, the supplied function is called with each item.</div></li>
+<li>Objects : <tt>(String key, Object value, Object)</tt>
+<div class="sub-desc">
+When iterating an object, the supplied function is called with each key-value pair in
+the object, and the iterated object</div></li>
+</ul></div></div></li><li><code>scope</code> : Object<div class="sub-desc">The scope (<code>this</code> reference) in which the specified function is executed. Defaults to
+the <code>object</code> being iterated.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-log"></a><b><a href="source/Ext.html#method-Ext-log">log</a></b>(&nbsp;<code>Mixed&nbsp;logMessage</code>,&nbsp;<code>String&nbsp;severity</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Method for logging.</div><div class="long">Method for logging.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>logMessage</code> : Mixed<div class="sub-desc">Message to log</div></li><li><code>severity</code> : String<div class="sub-desc">Severity role name</div></li></ul><strong>Returns:</strong><ul><li><code>void</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-namespace"></a><b><a href="source/Ext.html#method-Ext-namespace">namespace</a></b>(&nbsp;<code>String&nbsp;namespace1</code>,&nbsp;<code>String&nbsp;namespace2</code>,&nbsp;<code>String&nbsp;etc</code>&nbsp;)
+    :
+                                        Object<div class="mdesc"><div class="short">Creates namespaces to be used for scoping variables and classes so that they are not global.&#13;
+Specifying the last nod...</div><div class="long">Creates namespaces to be used for scoping variables and classes so that they are not global.
+Specifying the last node of a namespace implicitly creates all other nodes. Usage:
+<pre><code>Ext.namespace(<em>'Company'</em>, <em>'Company.data'</em>);
+Ext.namespace(<em>'Company.data'</em>); <i>// equivalent and preferable to above syntax
+</i>
+Company.Widget = <b>function</b>() { ... }
+Company.data.CustomStore = <b>function</b>(config) { ... }</code></pre><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>namespace1</code> : String<div class="sub-desc"></div></li><li><code>namespace2</code> : String<div class="sub-desc"></div></li><li><code>etc</code> : String<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc">The namespace object. (If multiple arguments are passed, this will be the last namespace created)</div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-override"></a><b><a href="source/Ext.html#method-Ext-override">override</a></b>(&nbsp;<code>Object&nbsp;origclass</code>,&nbsp;<code>Object&nbsp;overrides</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Adds a list of functions to the prototype of an existing class, overwriting any existing methods with the same name.&#13;...</div><div class="long">Adds a list of functions to the prototype of an existing class, overwriting any existing methods with the same name.
+Usage:<pre><code>Ext.override(MyClass, {
+    newMethod1: <b>function</b>(){
+        <i>// etc.
+</i>
+    },
+    newMethod2: <b>function</b>(foo){
+        <i>// etc.
+</i>
+    }
+});</code></pre><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>origclass</code> : Object<div class="sub-desc">The class to override</div></li><li><code>overrides</code> : Object<div class="sub-desc">The list of functions to add to origClass.  This should be specified as an object literal
+containing one or more methods.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-toArray"></a><b><a href="source/Ext.html#method-Ext-toArray">toArray</a></b>(&nbsp;<code>Iterable&nbsp;the</code>&nbsp;)
+    :
+                                        (Array)<div class="mdesc"><div class="short">Converts any iterable (numeric indices and a length property) into a true array&#13;
+Don't use this on strings. IE doesn'...</div><div class="long">Converts any iterable (numeric indices and a length property) into a true array
+Don't use this on strings. IE doesn't support "abc"[0] which this implementation depends on.
+For strings, use this instead: "abc".match(/./g) => [a,b,c];<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>the</code> : Iterable<div class="sub-desc">iterable object to be turned into a true Array.</div></li></ul><strong>Returns:</strong><ul><li><code>(Array)</code><div class="sub-desc">array</div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-tr"></a><b><a href="source/Ext.html#method-Ext-tr">tr</a></b>(&nbsp;<code>Object&nbsp;origClass</code>,&nbsp;<code>Object&nbsp;transObj</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Translates a class by overriding</div><div class="long">Translates a class by overriding<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>origClass</code> : Object<div class="sub-desc">Class prototype object</div></li><li><code>transObj</code> : Object<div class="sub-desc">Object holding translation values</div></li></ul><strong>Returns:</strong><ul><li><code>void</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Ext</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext-urlAppend"></a><b><a href="source/Ext.html#method-Ext-urlAppend">urlAppend</a></b>(&nbsp;<code>String&nbsp;url</code>,&nbsp;<code>String&nbsp;s</code>&nbsp;)
+    :
+                                        (String)<div class="mdesc"><div class="short">Appends content to the query string of a URL, handling logic for whether to place&#13;
+a question mark or ampersand.</div><div class="long">Appends content to the query string of a URL, handling logic for whether to place
+a question mark or ampersand.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>url</code> : String<div class="sub-desc">The URL to append to.</div></li><li><code>s</code> : String<div class="sub-desc">The content to append to the URL.</div></li></ul><strong>Returns:</strong><ul><li><code>(String)</code><div class="sub-desc">The resulting URL</div></li></ul></div></div></div></td><td class="msource">Ext</td></tr></tbody></table><a id="Ext-events"></a><h2>Public Events</h2><div class="no-members">This class has no public events.</div></div>
